@@ -2,7 +2,7 @@ import React from 'react';
 
 class MyComponent extends React.Component {
   componentDidMount() {
-    const apiUrl = '/api/clients/22';
+    const apiUrl = '/api/clients/';
     fetch(apiUrl,{ method: 'GET', headers: { 'Content-Type': 'application/json'}})
       .then((response) => response.json())
       .then((data) => console.log('This is your data', data));
