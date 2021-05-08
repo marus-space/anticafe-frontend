@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Tooltip, Space } from 'antd';
+import { Table } from 'antd';
 import axios from 'axios';
-import clsx from 'clsx';
 
 import classes from './ClientsTable.module.scss';
 
@@ -20,64 +19,64 @@ const ClientsTable: React.FC<ClientsTableProps> = (props) => {
 
     const columns = [
         {
-            title: 'ID',
-            dataIndex: 'client_id',
-            key: 'client_id',
-        },
-        {
             title: 'Фамилия',
             dataIndex: 'last_name',
             key: 'last_name',
+            width: 100,
         },
         {
             title: 'Имя',
             dataIndex: 'first_name',
             key: 'first_name',
+            width: 100,
         },
         {
             title: 'Отчество',
             dataIndex: 'patronymic',
             key: 'patronymic',
+            width: 100,
         },
         {
             title: 'Телефон',
             dataIndex: 'phone',
             key: 'phone',
+            width: 100,
         },
         {
             title: 'E-mail',
             dataIndex: 'email',
             key: 'email',
+            width: 140,
         },
         {
             title: 'Дата рождения',
             dataIndex: 'date_of_birth',
             key: 'date_of_birth',
-            width: 90,
+            width: 100,
         },
         {
             title: 'Баланс (руб.)',
             dataIndex: 'balance_rub',
             key: 'balance_rub',
-            width: 70,
+            width: 90,
         },
         {
             title: 'Баланс (мин.)',
             dataIndex: 'balance_min',
             key: 'balance_min',
-            width: 70,
+            width: 90,
         },
         {
             title: 'Оплата минутами',
             dataIndex: 'payment_min_status',
             key: 'payment_min_status',
-            width: 70,
+            width: 80,
         },
         {
             title: 'Бан',
             dataIndex: 'ban_status',
             key: 'ban_status',
-            width: 70,
+            width: 80,
         },
         {
             title: 'Ссылка для друзей',
@@ -85,18 +84,6 @@ const ClientsTable: React.FC<ClientsTableProps> = (props) => {
             key: 'ref_link',
             width: 100,
         },
-        {
-            title: 'Действия',
-            key: 'action',
-            width: 200,
-            render: () => (
-              <Space size="middle">
-                <a>Посещение</a>
-                <a>Пополнение</a>
-                <a>Бан</a>
-              </Space>
-            ),
-          },
         
     ];
     
@@ -106,7 +93,6 @@ const ClientsTable: React.FC<ClientsTableProps> = (props) => {
                 dataSource={dataSource}
                 columns={columns}
                 bordered
-                title={() => 'Клиенты'}
                 size="small"
             />
         </div>

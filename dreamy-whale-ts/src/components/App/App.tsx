@@ -1,13 +1,13 @@
 import React from 'react';
 
-import ClientsTable from '../layouts/ClientsTable';
+import Layout from '../layouts/Layout';
 import classes from './App.module.scss';
 import 'antd/dist/antd.css';
 
 function App() {
   return (
     <div className={classes.component}>
-      <ClientsTable />      
+      <Layout />
     </div>
   );
 }

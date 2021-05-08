@@ -1,0 +1,23 @@
+.component {
+    display: flex;
+    padding: 15px;
+  
+    .icon {
+      height: 32px;
+    }
+
+    .center {
+      margin: 0 auto;
+    }
+  
+    .name {
+      color: #fff;
+      font-size: 18px;
+      display: block;
+      margin: auto 0 auto 10px;
+    }
+
+    .hide {
+      display: none;
+    }
+}
