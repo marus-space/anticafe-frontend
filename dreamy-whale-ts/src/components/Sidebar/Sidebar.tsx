@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 import {
   UserOutlined,
@@ -31,29 +32,46 @@ class Sidebar extends React.Component {
             <Logo collapsed={this.state.collapsed}/>
             <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
             <SubMenu key="sub1" icon={<UserOutlined />} title="Клиенты">
-                <Menu.Item key="1">Клиенты</Menu.Item>
-                <Menu.Item key="2">Карты</Menu.Item>
-                <Menu.Item key="3">Посещения</Menu.Item>
-                <Menu.Item key="4">Абонементы</Menu.Item>
-                <Menu.Item key="5">Расходы</Menu.Item>
-                <Menu.Item key="6">Проводки</Menu.Item>
+                <Menu.Item key="1">
+                  <Link to={{ pathname: '/' }}>Клиенты</Link>
+                </Menu.Item>
+                <Menu.Item key="2">
+                  <Link to={{ pathname: '/cards' }}>Карты</Link>
+                </Menu.Item>
+                <Menu.Item key="3">
+                  <Link to={{ pathname: '/visits' }}>Посещения</Link></Menu.Item>
+                <Menu.Item key="4">
+                  <Link to={{ pathname: '/subscriptions' }}>Абонементы</Link>
+                </Menu.Item>
+                <Menu.Item key="5">
+                  <Link to={{ pathname: '/costs' }}>Расходы</Link>
+                </Menu.Item>
+                <Menu.Item key="6">
+                  <Link to={{ pathname: '/accounting_entries' }}>Проводки</Link>
+                </Menu.Item>
             </SubMenu>
             <Menu.Item key="7" icon={<CalendarOutlined />}>
-                Брони и аренды
+              <Link to={{ pathname: '/reservations' }}>Брони и аренды</Link>
             </Menu.Item>
             <Menu.Item key="8" icon={<SolutionOutlined />}>
-                Анкеты
+              <Link to={{ pathname: '/questionnaires' }}>Анкеты</Link>
             </Menu.Item>
             <Menu.Item key="9" icon={<ScanOutlined />}>
-                Записи со сканера
+              <Link to={{ pathname: '/scanner' }}>Записи со сканера</Link>
             </Menu.Item>
             <Menu.Item key="10" icon={<CalculatorOutlined />}>
-                Калькулятор
+              <Link to={{ pathname: '/calculator' }}>Калькулятор</Link>
             </Menu.Item>
             <SubMenu key="sub2" icon={<DollarOutlined />} title="Тарифы">
-                <Menu.Item key="11">Посещение</Menu.Item>
-                <Menu.Item key="12">Абонемент</Menu.Item>
-                <Menu.Item key="13">Бронь и аренда</Menu.Item>
+                <Menu.Item key="11">
+                <Link to={{ pathname: '/tariff/visit' }}>Посещение</Link>
+                </Menu.Item>
+                <Menu.Item key="12">
+                <Link to={{ pathname: '/tariff/subscription' }}>Абонемент</Link>
+                </Menu.Item>
+                <Menu.Item key="13">
+                <Link to={{ pathname: '/tariff/reservation' }}>Бронь и аренда</Link>
+                </Menu.Item>
             </SubMenu>
             </Menu>
         </Sider>

@@ -12,10 +12,16 @@ const ActionBar: React.FC<ActionBarProps> = (props) => {
     return (
         <div className={classes.component}>
             <Space>
-                <Search placeholder="Имя или номер телефона" allowClear onSearch={onSearch} className={classes.search} />
+                <Search
+                    placeholder="Имя или номер телефона"
+                    allowClear
+                    onSearch={onSearch}
+                    className={classes.search}
+                />
                 <Button>Посещение</Button>
                 <Button>Абонемент</Button>
                 <Button>Пополнение</Button>
+                <Button>Оплата минутами</Button>
                 <Button>Бан</Button>
             </Space>
         </div>

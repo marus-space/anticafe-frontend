@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Репозиторий Маруси Гопкало\r ==========================",
   "main": "index.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/react-router-dom": "^5.1.7"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/marus-space/dreamy-whale/issues"
   },
-  "homepage": "https://github.com/marus-space/dreamy-whale#readme"
+  "homepage": "https://github.com/marus-space/dreamy-whale#readme",
+  "dependencies": {
+    "react-router-dom": "^5.2.0"
+  }
 }

@@ -10,18 +10,13 @@ type LogoProps = {
     collapsed: boolean,
 };
 
-const Logo = (props: LogoProps) => {
+const Logo: React.FC<LogoProps> = (props) => {
     const { collapsed } = props;
 
     return (
-        <div className={classes.component}>
-            <img src={icon} alt="logo" className={clsx(classes.icon, {[classes.center]: collapsed})}/>
-            <Text
-                strong
-                className={clsx(classes.name, {[classes.hide]: collapsed})}
-            >
-                Dreamy Whale
-            </Text>
+        <div className={clsx(classes.component, {[classes.collapsed]: collapsed})}>
+            <img src={icon} alt="logo"/>
+            <Text strong>Dreamy Whale</Text>
         </div>
     );
 };
