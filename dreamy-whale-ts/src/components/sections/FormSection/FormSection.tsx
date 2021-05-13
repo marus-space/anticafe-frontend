@@ -27,7 +27,7 @@ class FormSection extends React.Component {
                 </Content>
             </div>
         );
-    };
-};
+    }
+}
 
 export default FormSection;

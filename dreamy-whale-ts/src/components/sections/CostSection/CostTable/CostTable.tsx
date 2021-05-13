@@ -15,7 +15,7 @@ interface DataType {
     cost_rub: number,
     cost_min: number,
     bonus: number,
-  };
+  }
 
 const CostTable: React.FC<CostTableProps> = (props) => {
     const [costs, setCosts] = useState<DataType[]>([]);

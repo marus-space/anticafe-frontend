@@ -27,7 +27,7 @@ class VisitTariffSection extends React.Component {
                 </Content>
             </div>
         );
-    };
-};
+    }
+}
 
 export default VisitTariffSection;

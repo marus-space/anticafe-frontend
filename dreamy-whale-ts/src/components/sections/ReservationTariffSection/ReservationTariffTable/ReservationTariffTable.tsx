@@ -16,7 +16,7 @@ interface DataType {
     max_num_of_persons: number,
     one_time_cost: number,
     cost_per_hour: number,
-  };
+  }
 
 const ReservationTariffTable: React.FC<ReservationTariffTableProps> = (props) => {
     const { selectedRowKeys, onSelect } = props;

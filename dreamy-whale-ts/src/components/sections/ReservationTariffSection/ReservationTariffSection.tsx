@@ -27,7 +27,7 @@ class ReservationTariffSection extends React.Component {
                 </Content>
             </div>
         );
-    };
-};
+    }
+}
 
 export default ReservationTariffSection;

@@ -17,7 +17,7 @@ interface DataType {
     date: Date,
     cost_rub: number,
     cost_min: number,
-  };
+  }
 
 const AccountingEntryTable: React.FC<AccountingEntryTableProps> = (props) => {
     const { selectedRowKeys, onSelect } = props;

@@ -15,7 +15,7 @@ interface DataType {
     end: string,
     duration: number,
     cost_rub: number,
-  };
+  }
 
 const SubscriptionTariffTable: React.FC<SubscriptionTariffTableProps> = (props) => {
     const { selectedRowKeys, onSelect } = props;

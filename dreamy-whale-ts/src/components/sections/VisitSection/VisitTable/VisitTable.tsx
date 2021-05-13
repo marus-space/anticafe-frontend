@@ -6,7 +6,7 @@ import axios from 'axios';
 import classes from './VisitTable.module.scss';
 
 const duration = (minutes: number) => {
-    var result = 
+    const result = 
         minutes === null
             ? ''
             : minutes >= 60 && minutes % 60 === 0
@@ -29,7 +29,7 @@ interface DataType {
     end: Date,
     duration: number,
     comment: string,
-  };
+  }
 
 const VisitTable: React.FC<VisitTableProps> = (props) => {
     const { selectedRowKeys, onSelect } = props;

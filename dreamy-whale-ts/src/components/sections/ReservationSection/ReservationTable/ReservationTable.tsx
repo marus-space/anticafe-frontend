@@ -25,7 +25,7 @@ interface DataType {
     num_of_persons: number,
     preliminary_cost: number,
     comment: string,
-  };
+}
 
 const ReservationTable: React.FC<ReservationTableProps> = (props) => {
     const { selectedRowKeys, onSelect } = props;

@@ -23,7 +23,7 @@ interface DataType {
     payment_min_status: boolean,
     ban_status: boolean,
     ref_link: string,
-  };
+  }
 
 const ClientTable: React.FC<ClientTableProps> = (props) => {
     const { selectedRowKeys, onSelect } = props;

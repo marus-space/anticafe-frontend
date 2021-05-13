@@ -27,7 +27,7 @@ class ClientSection extends React.Component {
                 </Content>
             </div>
         );
-    };
-};
+    }
+}
     
 export default ClientSection;

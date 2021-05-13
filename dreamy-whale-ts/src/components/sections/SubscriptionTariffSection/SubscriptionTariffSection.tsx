@@ -27,7 +27,7 @@ class SubscriptionTariffSection extends React.Component {
                 </Content>
             </div>
         );
-    };
-};
+    }
+}
 
 export default SubscriptionTariffSection;

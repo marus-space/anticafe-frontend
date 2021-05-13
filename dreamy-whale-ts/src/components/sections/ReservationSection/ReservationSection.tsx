@@ -27,7 +27,7 @@ class ReservationSection extends React.Component {
                 </Content>
             </div>
         );
-    };
-};
+    }
+}
 
 export default ReservationSection;

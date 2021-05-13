@@ -16,7 +16,7 @@ interface DataType {
     subscription: string,
     start: Date,
     end: Date,
-  };
+  }
 
 const SubscriptionTable: React.FC<SubscriptionTableProps> = (props) => {
     const { selectedRowKeys, onSelect } = props;

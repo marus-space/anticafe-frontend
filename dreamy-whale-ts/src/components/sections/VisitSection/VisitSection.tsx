@@ -27,7 +27,7 @@ class VisitSection extends React.Component {
                 </Content>
             </div>
         );
-    };
-};
+    }
+}
 
 export default VisitSection;

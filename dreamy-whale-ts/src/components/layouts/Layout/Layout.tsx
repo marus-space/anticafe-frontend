@@ -63,7 +63,7 @@ class PageLayout extends React.Component {
       </Layout>
       </div>
     );
-  };
-};
+  }
+}
 
 export default PageLayout;

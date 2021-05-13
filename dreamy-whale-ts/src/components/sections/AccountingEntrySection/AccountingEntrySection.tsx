@@ -27,7 +27,7 @@ class AccountingEntrySection extends React.Component {
                 </Content>
             </div>
         );
-    };
-};
+    }
+}
 
 export default AccountingEntrySection;

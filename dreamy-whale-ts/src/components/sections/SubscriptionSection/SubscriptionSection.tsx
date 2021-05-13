@@ -27,7 +27,7 @@ class SubscriptionSection extends React.Component {
                 </Content>
             </div>
         );
-    };
-};
+    }
+}
 
 export default SubscriptionSection;

@@ -16,7 +16,7 @@ interface DataType {
     card: number,
     card_status: string,
     date: Date,
-  };
+  }
 
 const CardTable: React.FC<CardTableProps> = (props) => {
     const { selectedRowKeys, onSelect } = props;

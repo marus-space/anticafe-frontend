@@ -15,7 +15,7 @@ interface DataType {
     start_tariff_zone: string,
     end_tariff_zone: string,
     cost_per_minute: number,
-  };
+}
 
 const VisitTariffTable: React.FC<VisitTariffTableProps> = (props) => {
     const { selectedRowKeys, onSelect } = props;

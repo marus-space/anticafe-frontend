@@ -24,7 +24,7 @@ interface DataType {
     card_id: number,
     card_type: string,
     processed: boolean,
-  };
+  }
 
 const FormTable: React.FC<FormTableProps> = (props) => {
     const { selectedRowKeys, onSelect } = props;
