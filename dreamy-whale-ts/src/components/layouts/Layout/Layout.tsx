@@ -16,6 +16,8 @@ import FormSection from '../../sections/FormSection';
 import ScannerSection from '../../sections/ScannerSection';
 
 import VisitTariffSecton from '../../sections/VisitTariffSection';
+import SubscriptionTariffSecton from '../../sections/SubscriptionTariffSection';
+import ReservationTariffSecton from '../../sections/ReservationTariffSection';
 import classes from './Layout.module.scss';
 
 const { Content } = Layout;
@@ -54,21 +56,8 @@ class PageLayout extends React.Component {
             </Route>
 
             <Route exact path="/tariff/visit" component={VisitTariffSecton} />
-
-            <Route exact path="/tariff/subscription">
-              <Header title="Стоимость абонементов" />
-              <Content className={classes.content}>
-                <div>Стоимость абонементов</div>
-              </Content>
-            </Route>
-
-            <Route exact path="/tariff/reservation">
-              <Header title="Тарифы на бронь и аренду" />
-              <Content className={classes.content}>
-                <div>Тарифы на бронь и аренду</div>
-              </Content>
-            </Route>
-
+            <Route exact path="/tariff/subscription" component={SubscriptionTariffSecton} />
+            <Route exact path="/tariff/reservation" component={ReservationTariffSecton} />
           </Switch>
         </Layout>
       </Layout>

@@ -17,10 +17,23 @@ const duration = (minutes: number) => {
     return result;
 };
 
-type VisitTableProps = {};
+type VisitTableProps = {
+    selectedRowKeys: React.Key[],
+    onSelect: (selectedRowKeys: React.Key[]) => void,
+};
+
+interface DataType {
+    key: React.Key;
+    client: string,
+    start: Date,
+    end: Date,
+    duration: number,
+    comment: string,
+  };
 
 const VisitTable: React.FC<VisitTableProps> = (props) => {
-    const [visits, setVisits] = useState<any[]>([]);
+    const { selectedRowKeys, onSelect } = props;
+    const [visits, setVisits] = useState<DataType[]>([]);
 
     useEffect(() => {
         axios
@@ -72,7 +85,12 @@ const VisitTable: React.FC<VisitTableProps> = (props) => {
             <Table
                 dataSource={dataSource}
                 columns={columns}
-                bordered
+                rowKey="visit_id"
+                rowSelection={{
+                    type: 'radio',
+                    onChange: ((selectedRowKeys: React.Key[], selectedRows: DataType[]) => onSelect(selectedRowKeys)),
+                    selectedRowKeys,
+                }}
                 size="small"
             />
         </div>

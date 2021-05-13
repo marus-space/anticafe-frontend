@@ -3,11 +3,16 @@ import { Button, Space, Input } from 'antd';
 
 import classes from './ClientActionBar.module.scss';
 
-type ClientActionBarProps = {};
+type ClientActionBarProps = {
+    selectedRowKeys: React.Key[],
+};
 
 const ClientActionBar: React.FC<ClientActionBarProps> = (props) => {
+    const { selectedRowKeys } = props;
     const { Search } = Input;
     const onSearch = (search: string) => console.log(search);
+
+    const disabled = selectedRowKeys.length === 0 ? true : false;
 
     return (
         <div className={classes.component}>
@@ -18,10 +23,10 @@ const ClientActionBar: React.FC<ClientActionBarProps> = (props) => {
                     onSearch={onSearch}
                     className={classes.search}
                 />
-                <Button>Новое посещение</Button>
-                <Button>Новый абонемент</Button>
-                <Button>Новое пополнение</Button>
-                <Button disabled>Изменить данные</Button>
+                <Button disabled={disabled} type="primary">Новое посещение</Button>
+                <Button disabled={disabled} type="primary">Новый абонемент</Button>
+                <Button disabled={disabled} type="primary">Новое пополнение</Button>
+                <Button disabled={disabled} type="primary">Изменить данные</Button>
             </Space>
         </div>
     );

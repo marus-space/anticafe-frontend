@@ -7,8 +7,18 @@ import classes from './CostTable.module.scss';
 
 type CostTableProps = {};
 
+interface DataType {
+    key: React.Key;
+    client: string,
+    cost_type: string,
+    date: Date,
+    cost_rub: number,
+    cost_min: number,
+    bonus: number,
+  };
+
 const CostTable: React.FC<CostTableProps> = (props) => {
-    const [costs, setCosts] = useState<any[]>([]);
+    const [costs, setCosts] = useState<DataType[]>([]);
 
     useEffect(() => {
         axios
@@ -67,7 +77,6 @@ const CostTable: React.FC<CostTableProps> = (props) => {
             <Table
                 dataSource={dataSource}
                 columns={columns}
-                bordered
                 size="small"
             />
         </div>

@@ -6,18 +6,28 @@ import VisitTariffActionBar from './VisitTariffActionBar';
 import VisitTariffTable from './VisitTariffTable';
 import classes from './VisitTariffSection.module.scss';
 
-const { Content } = Layout;
-
-type VisitTariffSectionProps = {};
-
-const VisitTariffSection: React.FC<VisitTariffSectionProps> = () => (
-    <div className={classes.component}>
-        <Header title="Тарифы на посещения" />
-        <Content className={classes.content}>
-            <VisitTariffActionBar />
-            <VisitTariffTable />
-        </Content>
-    </div>
-);
+class VisitTariffSection extends React.Component {
+    state = {
+        selectedRowKeys: [],
+    };
+    
+    onSelect = (selectedRowKeys: React.Key[]) => {
+        this.setState({ selectedRowKeys });
+        console.log(this.state.selectedRowKeys);
+    };
+    
+    render () {
+        const { Content } = Layout;
+        return (
+            <div className={classes.component} onClick={() => this.onSelect([])}>
+                <Header title="Тарифы на посещения" />
+                <Content className={classes.content}>
+                    <VisitTariffActionBar selectedRowKeys={this.state.selectedRowKeys} />
+                    <VisitTariffTable selectedRowKeys={this.state.selectedRowKeys} onSelect={this.onSelect} />
+                </Content>
+            </div>
+        );
+    };
+};
 
 export default VisitTariffSection;

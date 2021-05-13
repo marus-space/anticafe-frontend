@@ -5,10 +5,31 @@ import axios from 'axios';
 
 import classes from './ReservationTable.module.scss';
 
-type ReservationTableProps = {};
+type ReservationTableProps = {
+    selectedRowKeys: React.Key[],
+    onSelect: (selectedRowKeys: React.Key[]) => void,
+};
+
+interface DataType {
+    key: React.Key;
+    client: string,
+    last_name: string,
+    first_name: string,
+    phone: number,
+    reservation_object: string,
+    start: Date,
+    end: Date,
+    client_card: boolean,
+    schoolboy: boolean,
+    student: boolean,
+    num_of_persons: number,
+    preliminary_cost: number,
+    comment: string,
+  };
 
 const ReservationTable: React.FC<ReservationTableProps> = (props) => {
-    const [reservations, setReservations] = useState<any[]>([]);
+    const { selectedRowKeys, onSelect } = props;
+    const [reservations, setReservations] = useState<DataType[]>([]);
 
     useEffect(() => {
         axios
@@ -106,7 +127,12 @@ const ReservationTable: React.FC<ReservationTableProps> = (props) => {
             <Table
                 dataSource={dataSource}
                 columns={columns}
-                bordered
+                rowKey="reservation_id"
+                rowSelection={{
+                    type: 'radio',
+                    onChange: ((selectedRowKeys: React.Key[], selectedRows: DataType[]) => onSelect(selectedRowKeys)),
+                    selectedRowKeys,
+                }}
                 size="small"
             />
         </div>

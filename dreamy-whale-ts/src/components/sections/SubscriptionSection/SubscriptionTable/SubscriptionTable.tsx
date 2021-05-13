@@ -5,10 +5,22 @@ import axios from 'axios';
 
 import classes from './SubscriptionTable.module.scss';
 
-type SubscriptionTableProps = {};
+type SubscriptionTableProps = {
+    selectedRowKeys: React.Key[],
+    onSelect: (selectedRowKeys: React.Key[]) => void,
+};
+
+interface DataType {
+    key: React.Key;
+    client: string,
+    subscription: string,
+    start: Date,
+    end: Date,
+  };
 
 const SubscriptionTable: React.FC<SubscriptionTableProps> = (props) => {
-    const [subscriptions, setSubscriptions] = useState<any[]>([]);
+    const { selectedRowKeys, onSelect } = props;
+    const [subscriptions, setSubscriptions] = useState<DataType[]>([]);
 
     useEffect(() => {
         axios
@@ -54,7 +66,12 @@ const SubscriptionTable: React.FC<SubscriptionTableProps> = (props) => {
             <Table
                 dataSource={dataSource}
                 columns={columns}
-                bordered
+                rowKey="client_subscription_id"
+                rowSelection={{
+                    type: 'radio',
+                    onChange: ((selectedRowKeys: React.Key[], selectedRows: DataType[]) => onSelect(selectedRowKeys)),
+                    selectedRowKeys,
+                }}
                 size="small"
             />
         </div>

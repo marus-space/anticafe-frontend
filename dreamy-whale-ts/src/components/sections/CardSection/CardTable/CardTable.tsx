@@ -5,10 +5,22 @@ import axios from 'axios';
 
 import classes from './CardTable.module.scss';
 
-type CardTableProps = {};
+type CardTableProps = {
+    selectedRowKeys: React.Key[],
+    onSelect: (selectedRowKeys: React.Key[]) => void,
+};
+
+interface DataType {
+    key: React.Key;
+    client: string,
+    card: number,
+    card_status: string,
+    date: Date,
+  };
 
 const CardTable: React.FC<CardTableProps> = (props) => {
-    const [cards, setCards] = useState<any[]>([]);
+    const { selectedRowKeys, onSelect } = props;
+    const [cards, setCards] = useState<DataType[]>([]);
 
     useEffect(() => {
         axios
@@ -53,7 +65,12 @@ const CardTable: React.FC<CardTableProps> = (props) => {
             <Table
                 dataSource={dataSource}
                 columns={columns}
-                bordered
+                rowKey="client_card_id"
+                rowSelection={{
+                    type: 'radio',
+                    onChange: ((selectedRowKeys: React.Key[], selectedRows: DataType[]) => onSelect(selectedRowKeys)),
+                    selectedRowKeys,
+                }}
                 size="small"
             />
         </div>

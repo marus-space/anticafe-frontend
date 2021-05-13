@@ -3,11 +3,16 @@ import { Button, Space, Input } from 'antd';
 
 import classes from './AccountingEntryActionBar.module.scss';
 
-type AccountingEntryActionBarProps = {};
+type AccountingEntryActionBarProps = {
+    selectedRowKeys: React.Key[],
+};
 
 const AccountingEntryActionBar: React.FC<AccountingEntryActionBarProps> = (props) => {
+    const { selectedRowKeys } = props;
     const { Search } = Input;
     const onSearch = (search: string) => console.log(search);
+
+    const disabled = selectedRowKeys.length === 0 ? true : false;
 
     return (
         <div className={classes.component}>
@@ -19,8 +24,8 @@ const AccountingEntryActionBar: React.FC<AccountingEntryActionBarProps> = (props
                     className={classes.search}
                 />
                 <Button>Новое пополнение</Button>
-                <Button disabled>Изменить пополнение</Button>
-                <Button disabled>Удалить пополнение</Button>
+                <Button disabled={disabled} type="primary">Изменить пополнение</Button>
+                <Button disabled={disabled} type="primary">Удалить пополнение</Button>
             </Space>
         </div>
     );

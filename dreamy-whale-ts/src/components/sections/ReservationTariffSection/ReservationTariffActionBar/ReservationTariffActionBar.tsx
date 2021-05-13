@@ -1,13 +1,13 @@
 import React from 'react';
 import { Button, Space } from 'antd';
 
-import classes from './VisitTariffActionBar.module.scss';
+import classes from './ReservationTariffActionBar.module.scss';
 
-type VisitTariffActionBarProps = {
+type ReservationTariffActionBarProps = {
     selectedRowKeys: React.Key[],
 };
 
-const VisitTariffActionBar: React.FC<VisitTariffActionBarProps> = (props) => {
+const ReservationTariffActionBar: React.FC<ReservationTariffActionBarProps> = (props) => {
     const { selectedRowKeys } = props;
     const disabled = selectedRowKeys.length === 0 ? true : false;
     
@@ -22,4 +22,4 @@ const VisitTariffActionBar: React.FC<VisitTariffActionBarProps> = (props) => {
     );
 };
 
-export default VisitTariffActionBar;
+export default ReservationTariffActionBar;

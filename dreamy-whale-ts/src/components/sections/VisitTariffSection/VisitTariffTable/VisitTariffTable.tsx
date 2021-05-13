@@ -4,10 +4,22 @@ import axios from 'axios';
 
 import classes from './VisitTariffTable.module.scss';
 
-type VisitTariffTableProps = {};
+type VisitTariffTableProps = {
+    selectedRowKeys: React.Key[],
+    onSelect: (selectedRowKeys: React.Key[]) => void,
+};
+
+interface DataType {
+    key: React.Key;
+    card_type: string,
+    start_tariff_zone: string,
+    end_tariff_zone: string,
+    cost_per_minute: number,
+  };
 
 const VisitTariffTable: React.FC<VisitTariffTableProps> = (props) => {
-    const [visitTariff, setVisitTariff] = useState<any[]>([]);
+    const { selectedRowKeys, onSelect } = props;
+    const [visitTariff, setVisitTariff] = useState<DataType[]>([]);
 
     useEffect(() => {
         axios
@@ -53,7 +65,12 @@ const VisitTariffTable: React.FC<VisitTariffTableProps> = (props) => {
             <Table
                 dataSource={dataSource}
                 columns={columns}
-                bordered
+                rowKey="visit_tariff_id"
+                rowSelection={{
+                    type: 'radio',
+                    onChange: ((selectedRowKeys: React.Key[], selectedRows: DataType[]) => onSelect(selectedRowKeys)),
+                    selectedRowKeys,
+                }}
                 size="small"
             />
         </div>

@@ -5,10 +5,23 @@ import axios from 'axios';
 
 import classes from './AccountingEntryTable.module.scss';
 
-type AccountingEntryTableProps = {};
+type AccountingEntryTableProps = {
+    selectedRowKeys: React.Key[],
+    onSelect: (selectedRowKeys: React.Key[]) => void,
+};
+
+interface DataType {
+    key: React.Key;
+    client: string,
+    accounting_entry_type: string,
+    date: Date,
+    cost_rub: number,
+    cost_min: number,
+  };
 
 const AccountingEntryTable: React.FC<AccountingEntryTableProps> = (props) => {
-    const [accountingEntries, setAccountingEntrys] = useState<any[]>([]);
+    const { selectedRowKeys, onSelect } = props;
+    const [accountingEntries, setAccountingEntrys] = useState<DataType[]>([]);
 
     useEffect(() => {
         axios
@@ -30,7 +43,7 @@ const AccountingEntryTable: React.FC<AccountingEntryTableProps> = (props) => {
             title: () => <span className={classes.alignCenter}>Тип проводки</span>,
             dataIndex: 'accounting_entry_type',
             key: 'accounting_entry_type',
-            width: 120,
+            width: 140,
         },
         {
             title: () => <span className={classes.alignCenter}>Дата</span>,
@@ -60,7 +73,18 @@ const AccountingEntryTable: React.FC<AccountingEntryTableProps> = (props) => {
             <Table
                 dataSource={dataSource}
                 columns={columns}
-                bordered
+                rowKey="accounting_entry_id"
+                rowSelection={{
+                    type: 'radio',
+                    onChange: ((selectedRowKeys: React.Key[], selectedRows: DataType[]) => onSelect(selectedRowKeys)),
+                    selectedRowKeys,
+                    getCheckboxProps: (record: DataType) => ({
+                        disabled: 
+                            record.accounting_entry_type === 'Списание' 
+                            || record.accounting_entry_type === 'Зачисление бонуса за посещение',
+                        accounting_entry_type: record.accounting_entry_type,
+                    }),
+                }}
                 size="small"
             />
         </div>

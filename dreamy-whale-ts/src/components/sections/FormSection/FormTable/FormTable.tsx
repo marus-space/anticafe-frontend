@@ -5,10 +5,30 @@ import axios from 'axios';
 
 import classes from './FormTable.module.scss';
 
-type FormTableProps = {};
+type FormTableProps = {
+    selectedRowKeys: React.Key[],
+    onSelect: (selectedRowKeys: React.Key[]) => void,
+};
+
+interface DataType {
+    key: React.Key;
+    last_name: string,
+    first_name: string,
+    patronymic: string,
+    phone: number,
+    email: string,
+    ref_link_from: string,
+    ref_link: string,
+    source: string,
+    guest_card_id: number,
+    card_id: number,
+    card_type: string,
+    processed: boolean,
+  };
 
 const FormTable: React.FC<FormTableProps> = (props) => {
-    const [form, setForm] = useState<any[]>([]);
+    const { selectedRowKeys, onSelect } = props;
+    const [form, setForm] = useState<DataType[]>([]);
 
     useEffect(() => {
         axios
@@ -112,7 +132,12 @@ const FormTable: React.FC<FormTableProps> = (props) => {
             <Table
                 dataSource={dataSource}
                 columns={columns}
-                bordered
+                rowKey="questionnaire_id"
+                rowSelection={{
+                    type: 'radio',
+                    onChange: ((selectedRowKeys: React.Key[], selectedRows: DataType[]) => onSelect(selectedRowKeys)),
+                    selectedRowKeys,
+                }}
                 size="small"
             />
         </div>

@@ -5,15 +5,34 @@ import axios from 'axios';
 
 import classes from './ClientTable.module.scss';
 
-type ClientTableProps = {};
+type ClientTableProps = {
+    selectedRowKeys: React.Key[],
+    onSelect: (selectedRowKeys: React.Key[]) => void,
+};
+
+interface DataType {
+    key: React.Key;
+    last_name: string,
+    first_name: string,
+    patronymic: string,
+    phone: number,
+    email: string,
+    date_of_birth: Date,
+    balance_rub: number,
+    balance_min: number,
+    payment_min_status: boolean,
+    ban_status: boolean,
+    ref_link: string,
+  };
 
 const ClientTable: React.FC<ClientTableProps> = (props) => {
-    const [clients, setClients] = useState<any[]>([]);
+    const { selectedRowKeys, onSelect } = props;
+    const [clients, setClients] = useState<DataType[]>([]);
 
     useEffect(() => {
         axios
         .get("/clients/")
-        .then(response => setClients(response.data));
+        .then(response => setClients(response.data));        
     }, []);
 
     const dataSource = clients;
@@ -92,13 +111,18 @@ const ClientTable: React.FC<ClientTableProps> = (props) => {
             render: (text: string) => <span className={classes.alignCenter}>{text}</span>
         },
     ];
-    
+
     return (
         <div className={classes.component}>
             <Table
                 dataSource={dataSource}
                 columns={columns}
-                bordered
+                rowKey="client_id"
+                rowSelection={{
+                    type: 'radio',
+                    onChange: ((selectedRowKeys: React.Key[], selectedRows: DataType[]) => onSelect(selectedRowKeys)),
+                    selectedRowKeys,
+                }}
                 size="small"
             />
         </div>
