@@ -49,14 +49,14 @@ const ReservationTable: React.FC<ReservationTableProps> = (props) => {
             dataIndex: 'start',
             key: 'start',
             width: 90,
-            render: (date: Date) => <span className={classes.alignCenter}>{moment(date).format('DD.MM.YY HH:mm')}</span>
+            render: (date: Date) => <span className={classes.alignCenter}>{moment.utc(date).format('DD.MM.YY HH:mm')}</span>
         },
         {
             title: () => <span className={classes.alignCenter}>Окончание брони</span>,
             dataIndex: 'end',
             key: 'end',
             width: 90,
-            render: (date: Date) => <span className={classes.alignCenter}>{moment(date).format('DD.MM.YY HH:mm')}</span>
+            render: (date: Date) => <span className={classes.alignCenter}>{moment.utc(date).format('DD.MM.YY HH:mm')}</span>
         },
         {
             title: () => <span className={classes.alignCenter}>Клубная карта</span>,
@@ -98,7 +98,7 @@ const ReservationTable: React.FC<ReservationTableProps> = (props) => {
             dataIndex: 'comment',
             key: 'comment',
             width: 140,
-        },        
+        },
     ];
     
     return (

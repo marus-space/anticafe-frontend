@@ -7,7 +7,15 @@ import Sidebar from '../Sidebar';
 import Header from '../Header';
 import ClientSection from '../../sections/ClientSection';
 import CardSection from '../../sections/CardSection';
+import VisitSection from '../../sections/VisitSection';
+import SubscriptionSection from '../../sections/SubscriptionSection';
+import CostSection from '../../sections/CostSection';
+import AccountingEntrySection from '../../sections/AccountingEntrySection';
 import ReservationSection from '../../sections/ReservationSection';
+import FormSection from '../../sections/FormSection';
+import ScannerSection from '../../sections/ScannerSection';
+
+import VisitTariffSecton from '../../sections/VisitTariffSection';
 import classes from './Layout.module.scss';
 
 const { Content } = Layout;
@@ -28,60 +36,15 @@ class PageLayout extends React.Component {
           <Sidebar collapsed={this.state.collapsed} onCollapse={this.onCollapse} />
           <Layout className={clsx(classes.page, {[classes.collapsed]: this.state.collapsed})}>
           <Switch>
-
-            <Route exact path="/">
-              <ClientSection />
-            </Route>
-
-            <Route exact path="/cards">
-              <CardSection />
-            </Route>
-
-            <Route exact path="/visits">
-              <Header title="Посещения" />
-              <Content className={classes.content}>
-                <div>Посещения</div>
-              </Content>
-            </Route>
-
-            <Route exact path="/subscriptions">
-              <Header title="Абонементы" />
-              <Content className={classes.content}>
-                <div>Абонементы</div>
-              </Content>
-            </Route>
-
-            <Route exact path="/costs">
-              <Header title="Расходы" />
-              <Content className={classes.content}>
-                <div>Расходы</div>
-              </Content>
-            </Route>
-
-            <Route exact path="/accounting_entries">
-              <Header title="Проводки" />
-              <Content className={classes.content}>
-                <div>Проводки</div>
-              </Content>
-            </Route>
-
-            <Route exact path="/reservations">
-              <ReservationSection />
-            </Route>
-
-            <Route exact path="/questionnaires">
-              <Header title="Анкеты" />
-              <Content className={classes.content}>
-                <div>Анкеты</div>
-              </Content>
-            </Route>
-
-            <Route exact path="/scanner">
-              <Header title="Записи со сканера" />
-              <Content className={classes.content}>
-                <div>Записи со сканера</div>
-              </Content>
-            </Route>
+            <Route exact path="/" component={ClientSection} />
+            <Route exact path="/cards" component={CardSection} />
+            <Route exact path="/visits" component={VisitSection} />
+            <Route exact path="/subscriptions" component={SubscriptionSection}/>
+            <Route exact path="/costs" component={CostSection} />
+            <Route exact path="/accounting_entries" component={AccountingEntrySection} />
+            <Route exact path="/reservations" component={ReservationSection} />
+            <Route exact path="/forms" component={FormSection} />
+            <Route exact path="/scanner" component={ScannerSection} />
 
             <Route exact path="/calculator">
               <Header title="Калькулятор стоимости посещений" />
@@ -90,12 +53,7 @@ class PageLayout extends React.Component {
               </Content>
             </Route>
 
-            <Route exact path="/tariff/visit">
-              <Header title="Тарифы на посещения" />
-              <Content className={classes.content}>
-                <div>Тарифы на посещения</div>
-              </Content>
-            </Route>
+            <Route exact path="/tariff/visit" component={VisitTariffSecton} />
 
             <Route exact path="/tariff/subscription">
               <Header title="Стоимость абонементов" />

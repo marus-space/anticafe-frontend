@@ -18,11 +18,10 @@ const ClientActionBar: React.FC<ClientActionBarProps> = (props) => {
                     onSearch={onSearch}
                     className={classes.search}
                 />
-                <Button>Посещение</Button>
-                <Button>Абонемент</Button>
-                <Button>Пополнение</Button>
-                <Button>Оплата минутами</Button>
-                <Button>Бан</Button>
+                <Button>Новое посещение</Button>
+                <Button>Новый абонемент</Button>
+                <Button>Новое пополнение</Button>
+                <Button disabled>Изменить данные</Button>
             </Space>
         </div>
     );

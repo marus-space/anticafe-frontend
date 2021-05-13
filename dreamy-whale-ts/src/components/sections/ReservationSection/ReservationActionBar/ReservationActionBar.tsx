@@ -18,11 +18,9 @@ const ReservationActionBar: React.FC<ReservationActionBarProps> = (props) => {
                     onSearch={onSearch}
                     className={classes.search}
                 />
-                <Button>Посещение</Button>
-                <Button>Абонемент</Button>
-                <Button>Пополнение</Button>
-                <Button>Оплата минутами</Button>
-                <Button>Бан</Button>
+                <Button>Новая бронь</Button>
+                <Button disabled>Изменить бронь</Button>
+                <Button disabled>Удалить бронь</Button>
             </Space>
         </div>
     );

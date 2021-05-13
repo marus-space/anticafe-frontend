@@ -8,7 +8,9 @@ import classes from './ClientSection.module.scss';
 
 const { Content } = Layout;
 
-const ClientSection = () => (
+type ClientSectionProps = {};
+
+const ClientSection: React.FC<ClientSectionProps> = () => (
     <div className={classes.component}>
         <Header title="Клиенты" />
         <Content className={classes.content}>

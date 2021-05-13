@@ -8,7 +8,9 @@ import classes from './ReservationSection.module.scss';
 
 const { Content } = Layout;
 
-const ReservationSection = () => (
+type ReservationSectionProps = {};
+
+const ReservationSection: React.FC<ReservationSectionProps> = () => (
     <div className={classes.component}>
         <Header title="Брони и аренды" />
         <Content className={classes.content}>

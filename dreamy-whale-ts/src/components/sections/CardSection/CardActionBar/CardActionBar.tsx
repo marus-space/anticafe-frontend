@@ -13,16 +13,13 @@ const CardActionBar: React.FC<CardActionBarProps> = (props) => {
         <div className={classes.component}>
             <Space>
                 <Search
-                    placeholder="Имя или номер телефона"
+                    placeholder="Имя или номер карты"
                     allowClear
                     onSearch={onSearch}
                     className={classes.search}
                 />
-                <Button>Посещение</Button>
-                <Button>Абонемент</Button>
-                <Button>Пополнение</Button>
-                <Button>Оплата минутами</Button>
-                <Button>Бан</Button>
+                <Button>Новая карта</Button>
+                <Button disabled>Изменить статус карты</Button>
             </Space>
         </div>
     );

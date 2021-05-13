@@ -1,0 +1,12 @@
+@import "../../../../styles/vars.scss";
+
+.component {
+    margin-top: $table-margin-top;
+    
+    .alignCenter {
+        display: block;
+        text-align: center;
+        width: fit-content;
+        margin: 0 auto;
+    }
+}

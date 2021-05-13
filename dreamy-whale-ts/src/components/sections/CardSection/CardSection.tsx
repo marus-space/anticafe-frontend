@@ -8,7 +8,9 @@ import classes from './CardSection.module.scss';
 
 const { Content } = Layout;
 
-const CardSection = () => (
+type CardSectionProps = {};
+
+const CardSection: React.FC<CardSectionProps> = () => (
     <div className={classes.component}>
         <Header title="Карты клиентов" />
         <Content className={classes.content}>

@@ -61,7 +61,7 @@ const Sidebar: React.FC<SidebarProps> = (props) => {
               <Link to={{ pathname: '/reservations' }}>Брони и аренды</Link>
             </Menu.Item>
             <Menu.Item key="8" icon={<SolutionOutlined />}>
-              <Link to={{ pathname: '/questionnaires' }}>Анкеты</Link>
+              <Link to={{ pathname: '/forms' }}>Анкеты</Link>
             </Menu.Item>
             <Menu.Item key="9" icon={<ScanOutlined />}>
               <Link to={{ pathname: '/scanner' }}>Записи со сканера</Link>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Checkbox } from 'antd';
+import { Table } from 'antd';
 import moment from 'moment';
 import axios from 'axios';
 
@@ -20,14 +20,14 @@ const CardTable: React.FC<CardTableProps> = (props) => {
 
     const columns = [
         {
-            title: () => <span className={classes.alignCenter}>ID Клиента</span>,
+            title: () => <span className={classes.alignCenter}>Клиент</span>,
             dataIndex: 'client',
             key: 'client',
             width: 100,
-            render: (value: number) => <span className={classes.alignCenter}>{value}</span>
+            render: (text: string) => <span className={classes.alignCenter}>{text}</span>
         },
         {
-            title: () => <span className={classes.alignCenter}>ID Карты</span>,
+            title: () => <span className={classes.alignCenter}>Клубная карта</span>,
             dataIndex: 'card',
             key: 'card',
             width: 100,
@@ -37,14 +37,14 @@ const CardTable: React.FC<CardTableProps> = (props) => {
             title: () => <span className={classes.alignCenter}>Статус карты</span>,
             dataIndex: 'card_status',
             key: 'card_status',
-            width: 100,
+            width: 120,
         },
         {
             title: () => <span className={classes.alignCenter}>Дата последнего изменения</span>,
             dataIndex: 'date',
             key: 'date',
             width: 100,
-            render: (date: Date) => <span className={classes.alignCenter}>{moment(date).format('DD.MM.YYYY')}</span>
+            render: (date: Date) => <span className={classes.alignCenter}>{moment.utc(date).format('HH:mm DD.MM.YY')}</span>
         },
     ];
     

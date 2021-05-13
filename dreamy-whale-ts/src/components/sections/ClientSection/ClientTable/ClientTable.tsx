@@ -54,21 +54,21 @@ const ClientTable: React.FC<ClientTableProps> = (props) => {
             dataIndex: 'date_of_birth',
             key: 'date_of_birth',
             width: 100,
-            render: (date: Date) => <span className={classes.alignCenter}>{moment(date).format('DD.MM.YYYY')}</span>
+            render: (date: Date) => <span className={classes.alignCenter}>{moment.utc(date).format('DD.MM.YYYY')}</span>
         },
         {
             title: () => <span className={classes.alignCenter}>Баланс (руб.)</span>,
             dataIndex: 'balance_rub',
             key: 'balance_rub',
             width: 90,
-            render: (text: string) => <span className={classes.alignCenter}>{text}</span>
+            render: (value: number) => <span className={classes.alignCenter}>{value}</span>
         },
         {
             title: () => <span className={classes.alignCenter}>Баланс (мин.)</span>,
             dataIndex: 'balance_min',
             key: 'balance_min',
             width: 90,
-            render: (text: string) => <span className={classes.alignCenter}>{text}</span>
+            render: (value: number) => <span className={classes.alignCenter}>{value}</span>
         },
         {
             title: () => <span className={classes.alignCenter}>Оплата минутами</span>,
@@ -90,7 +90,7 @@ const ClientTable: React.FC<ClientTableProps> = (props) => {
             key: 'ref_link',
             width: 100,
             render: (text: string) => <span className={classes.alignCenter}>{text}</span>
-        },        
+        },
     ];
     
     return (
