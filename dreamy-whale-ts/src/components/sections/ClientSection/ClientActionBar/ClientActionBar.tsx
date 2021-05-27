@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Button, Space, Input } from 'antd';
 
 import classes from './ClientActionBar.module.scss';
@@ -23,9 +24,13 @@ const ClientActionBar: React.FC<ClientActionBarProps> = (props) => {
                     onSearch={onSearch}
                     className={classes.search}
                 />
-                <Button disabled={disabled} type="primary">Новое посещение</Button>
+                <Button disabled={disabled} type="primary">
+                    <Link to={{ pathname: '/clients/new_visit' }}>Новое посещение</Link>
+                </Button>
                 <Button disabled={disabled} type="primary">Новый абонемент</Button>
-                <Button disabled={disabled} type="primary">Новое пополнение</Button>
+                <Button disabled={disabled} type="primary">
+                    <Link to={{ pathname: '/clients/new_accounting_entry' }}>Новое пополнение</Link>
+                </Button>
                 <Button disabled={disabled} type="primary">Изменить данные</Button>
             </Space>
         </div>

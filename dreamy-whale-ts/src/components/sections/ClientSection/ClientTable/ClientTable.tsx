@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Table, Checkbox } from 'antd';
 import moment from 'moment';
 import axios from 'axios';
+import clsx from 'clsx';
 
 import classes from './ClientTable.module.scss';
 
@@ -94,14 +95,14 @@ const ClientTable: React.FC<ClientTableProps> = (props) => {
             dataIndex: 'payment_min_status',
             key: 'payment_min_status',
             width: 80,
-            render: (value: boolean) => <Checkbox checked={value} className={classes.alignCenter} />
+            render: (value: boolean) => <Checkbox checked={value} className={clsx(classes.alignCenter, classes.checkBox)} />
         },
         {
             title: () => <span className={classes.alignCenter}>Бан</span>,
             dataIndex: 'ban_status',
             key: 'ban_status',
             width: 80,
-            render: (value: boolean) => <Checkbox checked={value} className={classes.alignCenter} />
+            render: (value: boolean) => <Checkbox checked={value} className={clsx(classes.alignCenter, classes.checkBox)} />
         },
         {
             title: () => <span className={classes.alignCenter}>Ссылка для друзей</span>,

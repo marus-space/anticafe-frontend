@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { Layout } from 'antd';
 import clsx from 'clsx';
 
@@ -14,7 +14,7 @@ import AccountingEntrySection from '../../sections/AccountingEntrySection';
 import ReservationSection from '../../sections/ReservationSection';
 import FormSection from '../../sections/FormSection';
 import ScannerSection from '../../sections/ScannerSection';
-
+import CalculatorSection from '../../sections/CalculatorSection';
 import VisitTariffSecton from '../../sections/VisitTariffSection';
 import SubscriptionTariffSecton from '../../sections/SubscriptionTariffSection';
 import ReservationTariffSecton from '../../sections/ReservationTariffSection';
@@ -38,26 +38,21 @@ class PageLayout extends React.Component {
           <Sidebar collapsed={this.state.collapsed} onCollapse={this.onCollapse} />
           <Layout className={clsx(classes.page, {[classes.collapsed]: this.state.collapsed})}>
           <Switch>
-            <Route exact path="/" component={ClientSection} />
-            <Route exact path="/cards" component={CardSection} />
-            <Route exact path="/visits" component={VisitSection} />
-            <Route exact path="/subscriptions" component={SubscriptionSection}/>
-            <Route exact path="/costs" component={CostSection} />
-            <Route exact path="/accounting_entries" component={AccountingEntrySection} />
-            <Route exact path="/reservations" component={ReservationSection} />
-            <Route exact path="/forms" component={FormSection} />
-            <Route exact path="/scanner" component={ScannerSection} />
+            <Route path="/clients" component={ClientSection} />
+            <Route path="/cards" component={CardSection} />
+            <Route path="/visits" component={VisitSection} />
+            <Route path="/subscriptions" component={SubscriptionSection}/>
+            <Route path="/costs" component={CostSection} />
+            <Route path="/accounting_entries" component={AccountingEntrySection} />
+            <Route path="/reservations" component={ReservationSection} />
+            <Route path="/forms" component={FormSection} />
+            <Route path="/scanner" component={ScannerSection} />
+            <Route path="/calculator" component={CalculatorSection} />
+            <Route path="/tariff/visit" component={VisitTariffSecton} />
+            <Route path="/tariff/subscription" component={SubscriptionTariffSecton} />
+            <Route path="/tariff/reservation" component={ReservationTariffSecton} />
 
-            <Route exact path="/calculator">
-              <Header title="Калькулятор стоимости посещений" />
-              <Content className={classes.content}>
-                <div>Калькулятор стоимости посещений</div>
-              </Content>
-            </Route>
-
-            <Route exact path="/tariff/visit" component={VisitTariffSecton} />
-            <Route exact path="/tariff/subscription" component={SubscriptionTariffSecton} />
-            <Route exact path="/tariff/reservation" component={ReservationTariffSecton} />
+            <Redirect from="/" to="/clients" />
           </Switch>
         </Layout>
       </Layout>

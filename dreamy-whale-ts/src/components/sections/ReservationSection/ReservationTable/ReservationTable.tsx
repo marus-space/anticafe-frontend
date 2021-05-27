@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Table, Checkbox } from 'antd';
 import moment from 'moment'; 
 import axios from 'axios';
+import clsx from 'clsx';
 
 import classes from './ReservationTable.module.scss';
 
@@ -84,21 +85,21 @@ const ReservationTable: React.FC<ReservationTableProps> = (props) => {
             dataIndex: 'client_card',
             key: 'client_card',
             width: 80,
-            render: (value: boolean) => <Checkbox checked={value} className={classes.alignCenter} />
+            render: (value: boolean) => <Checkbox checked={value} className={clsx(classes.alignCenter, classes.checkBox)} />
         },
         {
             title: () => <span className={classes.alignCenter}>Школьник</span>,
             dataIndex: 'schoolboy',
             key: 'schoolboy',
             width: 80,
-            render: (value: boolean) => <Checkbox checked={value} className={classes.alignCenter} />
+            render: (value: boolean) => <Checkbox checked={value} className={clsx(classes.alignCenter, classes.checkBox)} />
         },
         {
             title: () => <span className={classes.alignCenter}>Студент</span>,
             dataIndex: 'student',
             key: 'student',
             width: 80,
-            render: (value: boolean) => <Checkbox checked={value} className={classes.alignCenter} />
+            render: (value: boolean) => <Checkbox checked={value} className={clsx(classes.alignCenter, classes.checkBox)} />
         },
         {
             title: () => <span className={classes.alignCenter}>Кол-во человек</span>,

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Button, Space, Input } from 'antd';
 
 import classes from './FormActionBar.module.scss';
@@ -23,7 +24,9 @@ const FormActionBar: React.FC<FormActionBarProps> = (props) => {
                     onSearch={onSearch}
                     className={classes.search}
                 />
-                <Button disabled={disabled} type="primary">Изменить данные</Button>
+                <Button disabled={disabled} type="primary">
+                    <Link to={{ pathname: '/forms/process' }}>Обработать анкету</Link>
+                </Button>
             </Space>
         </div>
     );

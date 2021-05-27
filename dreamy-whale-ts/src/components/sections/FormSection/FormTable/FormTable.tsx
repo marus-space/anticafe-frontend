@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Table, Checkbox } from 'antd';
 import moment from 'moment';
 import axios from 'axios';
+import clsx from 'clsx';
 
 import classes from './FormTable.module.scss';
 
@@ -123,7 +124,7 @@ const FormTable: React.FC<FormTableProps> = (props) => {
             dataIndex: 'processed',
             key: 'processed',
             width: 80,
-            render: (value: boolean) => <Checkbox checked={value} className={classes.alignCenter} />
+            render: (value: boolean) => <Checkbox checked={value} className={clsx(classes.alignCenter, classes.checkBox)} />
         },
     ];
     

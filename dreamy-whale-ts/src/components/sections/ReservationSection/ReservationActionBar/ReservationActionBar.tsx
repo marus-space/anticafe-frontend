@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Button, Space, Input } from 'antd';
 
 import classes from './ReservationActionBar.module.scss';
@@ -23,7 +24,9 @@ const ReservationActionBar: React.FC<ReservationActionBarProps> = (props) => {
                     onSearch={onSearch}
                     className={classes.search}
                 />
-                <Button>Новая бронь</Button>
+                <Button>
+                    <Link to={{ pathname: '/reservations/new_reservation' }}>Новая бронь</Link>
+                </Button>
                 <Button disabled={disabled} type="primary">Изменить бронь</Button>
                 <Button disabled={disabled} type="primary">Удалить бронь</Button>
             </Space>
