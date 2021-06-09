@@ -28,11 +28,13 @@ const SubscriptionTariffActionBar: React.FC<SubscriptionTariffActionBarProps> = 
     ];
 
     return (
-        <ActionBar
-            selectedItem={selectedItem}
-            searchPlaceholder="Абонемент"
-            actions={actions}
-        />
+        <div className={classes.component}>
+            <ActionBar
+                selectedItem={selectedItem}
+                searchPlaceholder="Абонемент"
+                actions={actions}
+            />
+        </div>
     );
 };
 

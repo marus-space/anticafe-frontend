@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Layout } from 'antd';
 
 import { SubscriptionTariffDataType as DataType } from '../../types/DataType';
 import SubscriptionTariffActionBar from './SubscriptionTariffActionBar';

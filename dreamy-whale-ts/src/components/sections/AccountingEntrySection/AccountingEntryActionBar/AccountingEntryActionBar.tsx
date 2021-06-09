@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button, Space, Input } from 'antd';
 import ActionBar from '../../../layouts/Section/ActionBar';
 import classes from './AccountingEntryActionBar.module.scss';
 
@@ -29,11 +28,13 @@ const AccountingEntryActionBar: React.FC<AccountingEntryActionBarProps> = (props
     ];
 
     return (
+        <div className={classes.component}>
         <ActionBar
             selectedItem={selectedItem}
             searchPlaceholder="Имя клиента"
             actions={actions}
         />
+    </div>
     );
 };
 

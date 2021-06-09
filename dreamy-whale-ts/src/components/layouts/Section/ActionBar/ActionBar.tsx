@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { Button, Space, Input } from 'antd';
 
 import classes from './ActionBar.module.scss';
-import { act } from 'react-dom/test-utils';
 
 type ActionBarProps = {
     selectedItem: boolean,
@@ -36,6 +35,7 @@ const ActionBar: React.FC<ActionBarProps> = (props) => {
                         <Button
                             disabled={action.alwaysEnabled ? false : disabled}
                             type={action.alwaysEnabled ? "default" : "primary"}
+                            key={action.linkPath}
                         >
                             <Link to={{ pathname: action.linkPath }}>{action.label}</Link>
                         </Button>

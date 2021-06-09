@@ -18,7 +18,7 @@ const Section: React.FC<SectionProps> = (props) => {
         <div className={classes.component}>
             <Switch>
                 {routs.map((route) => (
-                    <Route exact path={route.path}>
+                    <Route key={route.path} exact path={route.path}>
                         <Header title={route.title} />
                         <Content className={classes.content}>
                             {route.component}

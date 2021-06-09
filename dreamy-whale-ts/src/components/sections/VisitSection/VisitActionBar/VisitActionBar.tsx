@@ -13,26 +13,28 @@ const VisitActionBar: React.FC<VisitActionBarProps> = (props) => {
         {
             label: 'Новое посещение',
             alwaysEnabled: true,
-            linkPath: '/visits',
+            linkPath: '/visits/new',
         },
         {
             label: 'Изменить посещение',
             alwaysEnabled: false,
-            linkPath: '/visits',
+            linkPath: '/visits/edit/',
         },
         {
             label: 'Удалить посещение',
             alwaysEnabled: false,
-            linkPath: '/visits',
+            linkPath: '/visits/delete',
         },
     ];
     
     return (
-        <ActionBar
-            selectedItem={selectedItem}
-            searchPlaceholder="Имя клиента"
-            actions={actions}
-        />
+        <div className={classes.component}>
+            <ActionBar
+                selectedItem={selectedItem}
+                searchPlaceholder="Имя клиента"
+                actions={actions}
+            />
+        </div>
     );
 };
 

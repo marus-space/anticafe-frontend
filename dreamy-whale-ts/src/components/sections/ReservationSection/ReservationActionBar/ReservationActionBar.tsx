@@ -28,11 +28,13 @@ const ReservationActionBar: React.FC<ReservationActionBarProps> = (props) => {
     ];
 
     return (
-        <ActionBar
-            selectedItem={selectedItem}
-            searchPlaceholder="Имя или номер телефона"
-            actions={actions}
-        />
+        <div className={classes.component}>
+            <ActionBar
+                selectedItem={selectedItem}
+                searchPlaceholder="Имя или номер телефона"
+                actions={actions}
+            />
+        </div>
     );
 };
 

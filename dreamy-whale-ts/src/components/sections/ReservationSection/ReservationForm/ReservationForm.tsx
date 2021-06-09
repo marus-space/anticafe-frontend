@@ -1,8 +1,8 @@
 import React from 'react';
 import { Form, Input, Button, DatePicker, Select, InputNumber } from 'antd';
 import 'moment/locale/ru';
-import moment from 'moment';
-import axios from 'axios';
+// import moment from 'moment';
+// import axios from 'axios';
 
 import classes from './ReservationForm.module.scss';
 import locale from 'antd/es/date-picker/locale/ru_RU';

@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import { Layout } from 'antd';
 
 import { CardDataType as DataType } from '../../types/DataType';
-import Header from '../../layouts/Header';
 import CardActionBar from './CardActionBar';
 import CardTable from './CardTable';
 import Section from '../../layouts/Section';

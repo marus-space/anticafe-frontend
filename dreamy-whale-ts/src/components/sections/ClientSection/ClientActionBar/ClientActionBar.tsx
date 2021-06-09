@@ -28,16 +28,18 @@ const ClientActionBar: React.FC<ClientActionBarProps> = (props) => {
         {
             label: 'Изменить данные',
             alwaysEnabled: false,
-            linkPath: '/clients',
+            linkPath: '/clients/edit',
         },
     ];
 
     return (
-        <ActionBar
-            selectedItem={selectedItem}
-            searchPlaceholder="Имя или номер телефона"
-            actions={actions}
-        />
+        <div className={classes.component}>
+            <ActionBar
+                selectedItem={selectedItem}
+                searchPlaceholder="Имя или номер телефона"
+                actions={actions}
+            />
+        </div>
     );
 };
 

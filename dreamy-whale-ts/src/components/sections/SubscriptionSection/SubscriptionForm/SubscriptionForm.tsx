@@ -6,6 +6,7 @@ import { Moment } from 'moment';
 import axios from 'axios';
 
 import { ClientDataType as DataType } from '../../../types/DataType';
+import showSuccessMessage from '../../../layouts/SuccessMessage';
 import showErrorMessage from '../../../layouts/ErrorMessage';
 import classes from './SubscriptionForm.module.scss';
 
@@ -32,7 +33,10 @@ const  SubscriptionForm: React.FC<SubscriptionFormProps> = (props) => {
 
         axios
         .post('/client_subscriptions/', JSON.stringify(formObject), { headers: headers })
-        .then(response => window.location.href = "/subscriptions/")
+        .then(response => {
+            showSuccessMessage('Абонемент был успешно добавлен!');
+            setTimeout(() => window.location.href = "/subscriptions/", 1000);
+        })
         .catch(error => {
             console.error(error.response.data.error);
             showErrorMessage(error.response.data.error);
@@ -46,8 +50,8 @@ const  SubscriptionForm: React.FC<SubscriptionFormProps> = (props) => {
                 onFinish={onFinish}
                 initialValues={{ client: client.last_name + ' ' + client.first_name }}
             >
-                <Form.Item name="client">
-                    <Input disabled placeholder="Клиент" />
+                <Form.Item name="client" label="Клиент">
+                    <Input disabled />
                 </Form.Item>
                 <Form.Item name="subscription">
                     <Select placeholder="Абонемент">
@@ -60,9 +64,9 @@ const  SubscriptionForm: React.FC<SubscriptionFormProps> = (props) => {
                 </Form.Item>
                 <Form.Item name="start">
                     <DatePicker
-                        format="YYYY-MM-DD HH:mm"
+                        format="DD.MM.YYYY HH:mm"
                         showTime
-                        placeholder="Начало посещения"
+                        placeholder="Начало действия абонемента"
                         locale={locale}
                         className={classes.datePicker}
                     />

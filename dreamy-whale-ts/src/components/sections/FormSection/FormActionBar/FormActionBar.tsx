@@ -18,11 +18,13 @@ const FormActionBar: React.FC<FormActionBarProps> = (props) => {
     ];
 
     return (
-        <ActionBar
-            selectedItem={selectedItem}
-            searchPlaceholder="Имя или номер телефона"
-            actions={actions}
-        />
+        <div className={classes.component}>
+            <ActionBar
+                selectedItem={selectedItem}
+                searchPlaceholder="Имя или номер телефона"
+                actions={actions}
+            />
+        </div>
     );
 };
 

@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { Layout } from 'antd';
 
 import { VisitDataType as DataType } from '../../types/DataType';
-import Header from '../../layouts/Header';
 import VisitActionBar from './VisitActionBar';
 import VisitTable from './VisitTable';
+import VisitForm from './VisitForm';
 import Section from '../../layouts/Section';
 import classes from './VisitSection.module.scss';
 
@@ -26,19 +25,19 @@ const VisitSection: React.FC = () => {
                 </>,
         },
         {
-            path: '/visits',
+            path: '/visits/new',
             title: 'Новое посещение',
             component: <div></div>,
         },
         {
-            path: '/visits',
-            title: 'Изменить посещение',
-            component: <div></div>,
+            path: '/visits/edit',
+            title: 'Изменение посещения',
+            component: <VisitForm visit={visit[0]} method="PATCH" />,
         },
         {
-            path: '/visits',
-            title: 'Удалить посещение',
-            component: <div></div>,
+            path: '/visits/delete',
+            title: 'Удаление посещения',
+            component: <VisitForm visit={visit[0]} method="DELETE" />,
         },
     ];
 

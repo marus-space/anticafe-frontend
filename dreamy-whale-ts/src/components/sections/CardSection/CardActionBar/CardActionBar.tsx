@@ -23,11 +23,13 @@ const CardActionBar: React.FC<CardActionBarProps> = (props) => {
     ];
 
     return (
-        <ActionBar
-            selectedItem={selectedItem}
-            searchPlaceholder="Имя клиента"
-            actions={actions}
-        />
+        <div className={classes.component}>
+            <ActionBar
+                selectedItem={selectedItem}
+                searchPlaceholder="Имя клиента"
+                actions={actions}
+            />
+        </div>
     );
 };
 

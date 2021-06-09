@@ -6,6 +6,7 @@ import ClientTable from './ClientTable';
 import VisitForm from '../VisitSection/VisitForm';
 import SubscriptionForm from '../SubscriptionSection/SubscriptionForm';
 import AccountingEntryForm from '../AccountingEntrySection/AccountingEntryForm';
+import ClientForm from './ClientForm';
 import Section from '../../layouts/Section';
 import classes from './ClientSection.module.scss';
 
@@ -41,6 +42,12 @@ const ClientSection: React.FC = () => {
             title: 'Новое пополнение',
             component: <AccountingEntryForm client={client[0]} />,
         },
+        {
+            path: '/clients/edit',
+            title: 'Изменить данные клиента',
+            component: <ClientForm client={client[0]} />,
+        },
+
     ];
 
     return(

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Layout } from 'antd';
 
 import { SubscriptionDataType as DataType } from '../../types/DataType';
 import SubscriptionActionBar from './SubscriptionActionBar';
@@ -25,18 +24,18 @@ const SubscriptionSection: React.FC = () => {
                 </>,
         },
         {
-            path: '/subscriptions',
+            path: '/subscriptions/new',
             title: 'Новый абонемент',
             component: <div>Новый абонемент</div>,
         },
         {
-            path: '/subscriptions',
-            title: 'Изменить абонемент',
+            path: '/subscriptions/edit',
+            title: 'Изменение абонемента',
             component: <div>Изменить абонемент</div>,
         },
         {
-            path: '/subscriptions',
-            title: 'Удалить абонемент',
+            path: '/subscriptions/delete',
+            title: 'Удаление абонемента',
             component: <div>Удалить абонемент</div>,
         },
     ];

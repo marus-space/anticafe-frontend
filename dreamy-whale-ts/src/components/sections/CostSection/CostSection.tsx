@@ -1,5 +1,4 @@
 import React from 'react';
-import { Layout } from 'antd';
 
 import CostActionBar from './CostActionBar';
 import CostTable from './CostTable';

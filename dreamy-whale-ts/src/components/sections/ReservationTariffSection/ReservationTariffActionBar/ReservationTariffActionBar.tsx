@@ -21,18 +21,20 @@ const ReservationTariffActionBar: React.FC<ReservationTariffActionBarProps> = (p
             linkPath: '/tariff/reservation',
         },
         {
-            label: 'Удалить пополнение',
+            label: 'Удалить тариф',
             alwaysEnabled: false,
             linkPath: '/tariff/reservation',
         },
     ];
 
     return (
-        <ActionBar
-            selectedItem={selectedItem}
-            searchPlaceholder="Объект брони"
-            actions={actions}
-        />
+        <div className={classes.component}>
+            <ActionBar
+                selectedItem={selectedItem}
+                searchPlaceholder="Объект брони"
+                actions={actions}
+            />
+        </div>
     );
 };
 

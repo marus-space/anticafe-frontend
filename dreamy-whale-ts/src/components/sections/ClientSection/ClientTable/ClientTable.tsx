@@ -18,7 +18,7 @@ const ClientTable: React.FC<ClientTableProps> = (props) => {
     useEffect(() => {
         axios
         .get("/clients/")
-        .then(response => setClients(response.data));        
+        .then(response => setClients(response.data));
     }, []);
 
     const dataSource = clients;

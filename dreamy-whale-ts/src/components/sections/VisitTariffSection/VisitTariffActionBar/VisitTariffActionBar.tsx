@@ -28,11 +28,13 @@ const VisitTariffActionBar: React.FC<VisitTariffActionBarProps> = (props) => {
     ];
 
     return (
-        <ActionBar
-            selectedItem={selectedItem}
-            searchPlaceholder="Тип карты"
-            actions={actions}
-        />
+        <div className={classes.component}>
+            <ActionBar
+                selectedItem={selectedItem}
+                searchPlaceholder="Тип карты"
+                actions={actions}
+            />
+        </div>
     );
 };
 

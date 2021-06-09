@@ -1,11 +1,12 @@
 import { message } from 'antd';
 import 'moment/locale/ru';
 
-const showErrorMessage = (errorMessage: any) => (
+import classes from './ErrorMessage.module.scss';
+
+const showErrorMessage = (errorMessage: string) => (
     message.error({
         content: errorMessage,
         style: { width: 'fit-content', margin: '80px 30px 0 80%' },
-        key: errorMessage,
     })
 );
 

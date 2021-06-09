@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Layout } from 'antd';
 
 import { AccountingEntryDataType as DataType } from '../../types/DataType';
 import AccountingEntryActionBar from './AccountingEntryActionBar';

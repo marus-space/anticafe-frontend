@@ -6,6 +6,7 @@ import moment, { Moment } from 'moment';
 import axios from 'axios';
 
 import { ClientDataType as DataType } from '../../../types/DataType';
+import showSuccessMessage from '../../../layouts/SuccessMessage';
 import showErrorMessage from '../../../layouts/ErrorMessage';
 import classes from './AccountingEntryForm.module.scss';
 
@@ -34,7 +35,10 @@ const AccountingEntryForm: React.FC<AccountingEntryFormProps> = (props) => {
 
         axios
         .post('/accounting_entries/', JSON.stringify(formObject), { headers: headers })
-        .then(response => window.location.href = "/accounting_entries/")
+        .then(response => {
+            showSuccessMessage('Проводка была успешно добавлена!');
+            setTimeout(() => window.location.href = "/accounting_entries/", 1000);          
+        })
         .catch(error => {
             console.error(error.response.data.error);
             showErrorMessage(error.response.data.error);
@@ -59,7 +63,7 @@ const AccountingEntryForm: React.FC<AccountingEntryFormProps> = (props) => {
                 </Form.Item>
                 <Form.Item name="date">
                     <DatePicker
-                    format="YYYY-MM-DD HH:mm"
+                    format="DD.MM.YYYY HH:mm"
                     showTime
                     placeholder="Дата"
                     locale={locale}
@@ -70,7 +74,8 @@ const AccountingEntryForm: React.FC<AccountingEntryFormProps> = (props) => {
                     <InputNumber
                         min="0"
                         step="0.1"
-                        className={classes.unputNumber}
+                        placeholder="Сумма пополнения"
+                        className={classes.inputNumber}
                     />
                 </Form.Item>
                 <Form.Item name="comment">

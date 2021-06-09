@@ -5,7 +5,6 @@ import axios from 'axios';
 
 import { CardDataType as DataType } from '../../../types/DataType';
 import classes from './CardTable.module.scss';
-import { on } from 'cluster';
 
 type CardTableProps = {
     onSelectItem: (record: DataType) => void,

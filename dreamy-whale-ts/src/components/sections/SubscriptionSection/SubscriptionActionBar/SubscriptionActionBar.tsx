@@ -13,26 +13,28 @@ const SubscriptionActionBar: React.FC<SubscriptionActionBarProps> = (props) => {
         {
             label: 'Новый абонемент',
             alwaysEnabled: true,
-            linkPath: '/subscriptions',
+            linkPath: '/subscriptions/new',
         },
         {
             label: 'Изменить абонемент',
             alwaysEnabled: false,
-            linkPath: '/subscriptions',
+            linkPath: '/subscriptions/edit',
         },
         {
             label: 'Удалить абонемент',
             alwaysEnabled: false,
-            linkPath: '/subscriptions',
+            linkPath: '/subscriptions/delete',
         }
     ];
 
     return (
-        <ActionBar
-            selectedItem={selectedItem}
-            searchPlaceholder="Имя клиента"
-            actions={actions}
-        />
+        <div className={classes.component}>
+            <ActionBar
+                selectedItem={selectedItem}
+                searchPlaceholder="Имя клиента"
+                actions={actions}
+            />
+        </div>
     );
 };
 

@@ -3,11 +3,13 @@ import ActionBar from '../../../layouts/Section/ActionBar';
 import classes from './ScannerActionBar.module.scss';
 
 const ScannerActionBar: React.FC = () => (
-    <ActionBar
-        selectedItem={false}
-        searchPlaceholder="Номер карты"
-        actions={[]}
-    />
+    <div className={classes.component}>
+        <ActionBar
+            selectedItem={false}
+            searchPlaceholder="Номер карты"
+            actions={[]}
+        />
+    </div>
 );
 
 export default ScannerActionBar;
