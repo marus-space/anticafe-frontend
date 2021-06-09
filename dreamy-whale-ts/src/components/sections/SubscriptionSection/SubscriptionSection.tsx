@@ -1,33 +1,51 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Layout } from 'antd';
 
-import Header from '../../layouts/Header';
+import { SubscriptionDataType as DataType } from '../../types/DataType';
 import SubscriptionActionBar from './SubscriptionActionBar';
 import SubscriptionTable from './SubscriptionTable';
+import Section from '../../layouts/Section';
 import classes from './SubscriptionSection.module.scss';
 
-class SubscriptionSection extends React.Component {
-    state = {
-        selectedRowKeys: [],
+const SubscriptionSection: React.FC = () => {
+    const [subscription, setSubscription] = useState<DataType[]>([]);
+
+    const onSelectItem = (record: DataType) => {
+        setSubscription([record]);
     };
-    
-    onSelect = (selectedRowKeys: React.Key[]) => {
-        this.setState({ selectedRowKeys });
-        console.log(this.state.selectedRowKeys);
-    };
-    
-    render () {
-        const { Content } = Layout;
-        return (
-            <div className={classes.component} onClick={() => this.onSelect([])}>
-                <Header title="Абонементы" />
-                <Content className={classes.content}>
-                    <SubscriptionActionBar selectedRowKeys={this.state.selectedRowKeys} />
-                    <SubscriptionTable selectedRowKeys={this.state.selectedRowKeys} onSelect={this.onSelect} />
-                </Content>
-            </div>
-        );
-    }
-}
+
+    const routs = [
+        {
+            path: '/subscriptions',
+            title: 'Абонементы',
+            component: 
+                <>
+                    <SubscriptionActionBar selectedItem={subscription[0] ? true : false} />
+                    <SubscriptionTable onSelectItem={onSelectItem} />
+                </>,
+        },
+        {
+            path: '/subscriptions',
+            title: 'Новый абонемент',
+            component: <div>Новый абонемент</div>,
+        },
+        {
+            path: '/subscriptions',
+            title: 'Изменить абонемент',
+            component: <div>Изменить абонемент</div>,
+        },
+        {
+            path: '/subscriptions',
+            title: 'Удалить абонемент',
+            component: <div>Удалить абонемент</div>,
+        },
+    ];
+
+    return(
+        <div className={classes.component}>
+            <Section routs={routs} />
+        </div>
+    );
+};
 
 export default SubscriptionSection;

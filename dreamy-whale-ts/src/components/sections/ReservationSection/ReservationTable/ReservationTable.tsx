@@ -4,32 +4,15 @@ import moment from 'moment';
 import axios from 'axios';
 import clsx from 'clsx';
 
+import { ReservationDataType as DataType } from '../../../types/DataType';
 import classes from './ReservationTable.module.scss';
 
 type ReservationTableProps = {
-    selectedRowKeys: React.Key[],
-    onSelect: (selectedRowKeys: React.Key[]) => void,
+    onSelectItem: (record: DataType) => void,
 };
 
-interface DataType {
-    key: React.Key;
-    client: string,
-    last_name: string,
-    first_name: string,
-    phone: number,
-    reservation_object: string,
-    start: Date,
-    end: Date,
-    client_card: boolean,
-    schoolboy: boolean,
-    student: boolean,
-    num_of_persons: number,
-    preliminary_cost: number,
-    comment: string,
-}
-
 const ReservationTable: React.FC<ReservationTableProps> = (props) => {
-    const { selectedRowKeys, onSelect } = props;
+    const { onSelectItem } = props;
     const [reservations, setReservations] = useState<DataType[]>([]);
 
     useEffect(() => {
@@ -131,8 +114,10 @@ const ReservationTable: React.FC<ReservationTableProps> = (props) => {
                 rowKey="reservation_id"
                 rowSelection={{
                     type: 'radio',
-                    onChange: ((selectedRowKeys: React.Key[], selectedRows: DataType[]) => onSelect(selectedRowKeys)),
-                    selectedRowKeys,
+                    onSelect: (record) => {                        
+                        onSelectItem(record);
+                        console.log(record);
+                    },
                 }}
                 size="small"
             />

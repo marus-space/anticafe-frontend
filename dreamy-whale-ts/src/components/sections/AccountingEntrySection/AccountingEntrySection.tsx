@@ -10,7 +10,7 @@ import classes from './AccountingEntrySection.module.scss';
 const AccountingEntrySection: React.FC = () => {
     const [accountingEntry, setAccountingEntry] = useState<DataType[]>([]);
 
-    const onAccountingEntrySelect = (record: DataType) => {
+    const onSelectItem = (record: DataType) => {
         setAccountingEntry([record]);
     };
 
@@ -21,7 +21,7 @@ const AccountingEntrySection: React.FC = () => {
             component: 
                 <>
                     <AccountingEntryActionBar selectedItem={accountingEntry[0] ? true : false} />
-                    <AccountingEntryTable onAccountingEntrySelect={onAccountingEntrySelect} />
+                    <AccountingEntryTable onSelectItem={onSelectItem} />
                 </>,
         },
         {

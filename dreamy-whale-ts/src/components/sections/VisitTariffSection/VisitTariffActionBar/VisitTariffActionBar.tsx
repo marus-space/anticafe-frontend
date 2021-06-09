@@ -1,24 +1,38 @@
 import React from 'react';
-import { Button, Space } from 'antd';
-
+import ActionBar from '../../../layouts/Section/ActionBar';
 import classes from './VisitTariffActionBar.module.scss';
 
 type VisitTariffActionBarProps = {
-    selectedRowKeys: React.Key[],
+    selectedItem: boolean,
 };
 
 const VisitTariffActionBar: React.FC<VisitTariffActionBarProps> = (props) => {
-    const { selectedRowKeys } = props;
-    const disabled = selectedRowKeys.length === 0 ? true : false;
+    const { selectedItem } = props;
     
+    const actions = [
+        {
+            label: 'Новый тариф',
+            alwaysEnabled: true,
+            linkPath: '/tariff/visit',
+        },
+        {
+            label: 'Изменить тариф',
+            alwaysEnabled: false,
+            linkPath: '/tariff/visit',
+        },
+        {
+            label: 'Удалить тариф',
+            alwaysEnabled: false,
+            linkPath: '/tariff/visit',
+        },
+    ];
+
     return (
-        <div className={classes.component}>
-        <Space>
-            <Button>Новый тариф</Button>
-            <Button disabled={disabled} type="primary">Изменить тариф</Button>
-            <Button disabled={disabled} type="primary">Удалить тариф</Button>
-        </Space>
-    </div>
+        <ActionBar
+            selectedItem={selectedItem}
+            searchPlaceholder="Тип карты"
+            actions={actions}
+        />
     );
 };
 

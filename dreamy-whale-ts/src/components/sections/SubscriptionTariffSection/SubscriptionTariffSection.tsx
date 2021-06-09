@@ -1,33 +1,51 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Layout } from 'antd';
 
-import Header from '../../layouts/Header';
+import { SubscriptionTariffDataType as DataType } from '../../types/DataType';
 import SubscriptionTariffActionBar from './SubscriptionTariffActionBar';
 import SubscriptionTariffTable from './SubscriptionTariffTable';
+import Section from '../../layouts/Section';
 import classes from './SubscriptionTariffSection.module.scss';
 
-class SubscriptionTariffSection extends React.Component {
-    state = {
-        selectedRowKeys: [],
+const SubscriptionTariffSection: React.FC = () => {
+    const [subscriptionTariff, setSubscriptionTariff] = useState<DataType[]>([]);
+
+    const onSelectItem = (record: DataType) => {
+        setSubscriptionTariff([record]);
     };
-    
-    onSelect = (selectedRowKeys: React.Key[]) => {
-        this.setState({ selectedRowKeys });
-        console.log(this.state.selectedRowKeys);
-    };
-    
-    render () {
-        const { Content } = Layout;
-        return (
-            <div className={classes.component} onClick={() => this.onSelect([])}>
-                <Header title="Стоимость абонементов" />
-                <Content className={classes.content}>
-                    <SubscriptionTariffActionBar selectedRowKeys={this.state.selectedRowKeys} />
-                    <SubscriptionTariffTable selectedRowKeys={this.state.selectedRowKeys} onSelect={this.onSelect} />
-                </Content>
-            </div>
-        );
-    }
-}
+
+    const routs = [
+        {
+            path: '/tariff/subscription',
+            title: 'Стоимость абонементов',
+            component: 
+                <>
+                    <SubscriptionTariffActionBar selectedItem={subscriptionTariff[0] ? true : false} />
+                    <SubscriptionTariffTable onSelectItem={onSelectItem} />
+                </>,
+        },
+        {
+            path: '/tariff/subscription/new',
+            title: 'Новый абонемент',
+            component: <div></div>,
+        },
+        {
+            path: '/tariff/subscription/edit',
+            title: 'Изменить абонемент',
+            component: <div></div>,
+        },
+        {
+            path: '/tariff/subscription/delete',
+            title: 'Удалить абонемент',
+            component: <div></div>,
+        },
+    ];
+
+    return(
+        <div className={classes.component}>
+            <Section routs={routs} />
+        </div>
+    );
+};
 
 export default SubscriptionTariffSection;

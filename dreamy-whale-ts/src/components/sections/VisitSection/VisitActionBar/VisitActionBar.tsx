@@ -1,33 +1,38 @@
 import React from 'react';
-import { Button, Space, Input } from 'antd';
-
+import ActionBar from '../../../layouts/Section/ActionBar';
 import classes from './VisitActionBar.module.scss';
 
 type VisitActionBarProps = {
-    selectedRowKeys: React.Key[],
+    selectedItem: boolean,
 };
 
 const VisitActionBar: React.FC<VisitActionBarProps> = (props) => {
-    const { selectedRowKeys } = props;
-    const { Search } = Input;
-    const onSearch = (search: string) => console.log(search);
-
-    const disabled = selectedRowKeys.length === 0 ? true : false;
-
+    const { selectedItem } = props;
+    
+    const actions = [
+        {
+            label: 'Новое посещение',
+            alwaysEnabled: true,
+            linkPath: '/visits',
+        },
+        {
+            label: 'Изменить посещение',
+            alwaysEnabled: false,
+            linkPath: '/visits',
+        },
+        {
+            label: 'Удалить посещение',
+            alwaysEnabled: false,
+            linkPath: '/visits',
+        },
+    ];
+    
     return (
-        <div className={classes.component}>
-            <Space>
-                <Search
-                    placeholder="Имя клиента"
-                    allowClear
-                    onSearch={onSearch}
-                    className={classes.search}
-                />
-                <Button>Новое посещение</Button>
-                <Button disabled={disabled} type="primary">Изменить посещение</Button>
-                <Button disabled={disabled} type="primary">Удалить посещение</Button>
-            </Space>
-        </div>
+        <ActionBar
+            selectedItem={selectedItem}
+            searchPlaceholder="Имя клиента"
+            actions={actions}
+        />
     );
 };
 

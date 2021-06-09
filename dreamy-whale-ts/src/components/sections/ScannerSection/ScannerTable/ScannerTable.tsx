@@ -5,9 +5,7 @@ import axios from 'axios';
 
 import classes from './ScannerTable.module.scss';
 
-type ScannerTableProps = {};
-
-const ScannerTable: React.FC<ScannerTableProps> = (props) => {
+const ScannerTable: React.FC = (props) => {
     const [scans, setScans] = useState<any[]>([]);
 
     useEffect(() => {

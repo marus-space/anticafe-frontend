@@ -1,46 +1,41 @@
-import React from 'react';
-import { Switch, Route } from 'react-router-dom';
-import { Layout } from 'antd';
+import React, { useState } from 'react';
 
-import Header from '../../layouts/Header';
+import { FormDataType as DataType } from '../../types/DataType';
 import FormActionBar from './FormActionBar';
 import FormTable from './FormTable';
 import FormForm from './FormForm';
+import Section from '../../layouts/Section';
 import classes from './FormSection.module.scss';
 
-class FormSection extends React.Component {
-    state = {
-        selectedRowKeys: [],
+const FormSection: React.FC = () => {
+    const [form, setForm] = useState<DataType[]>([]);
+
+    const onSelectItem = (record: DataType) => {
+        setForm([record]);
     };
-    
-    onSelect = (selectedRowKeys: React.Key[]) => {
-        this.setState({ selectedRowKeys });
-        console.log(this.state.selectedRowKeys);
-    };
-    
-    render () {
-        const { Content } = Layout;
-        return (
-            <div className={classes.component} onClick={() => this.onSelect([])}>
-                <Switch>
-                    <Route exact path="/forms">
-                        <Header title="Анкеты для оформления клубной карты" />
-                        <Content className={classes.content}>
-                            <FormActionBar selectedRowKeys={this.state.selectedRowKeys} />
-                            <FormTable selectedRowKeys={this.state.selectedRowKeys} onSelect={this.onSelect} />
-                        </Content>
-                    </Route>
-                    <Route exact path="/forms/process">
-                        <Header title="Обработка анкеты" />
-                        <Content className={classes.content}>
-                            <FormForm />
-                        </Content>
-                    </Route>
-                </Switch>
-                
-            </div>
-        );
-    }
-}
+
+    const routs = [
+        {
+            path: '/forms',
+            title: 'Анкеты для оформления клубной карты',
+            component: 
+                <>
+                    <FormActionBar selectedItem={form[0] ? true : false} />
+                    <FormTable onSelectItem={onSelectItem} />
+                </>,
+        },
+        {
+            path: '/forms/process',
+            title: 'Обработка анкеты',
+            component: <FormForm />,
+        },
+    ];
+
+    return(
+        <div className={classes.component}>
+            <Section routs={routs} />
+        </div>
+    );
+};
 
 export default FormSection;

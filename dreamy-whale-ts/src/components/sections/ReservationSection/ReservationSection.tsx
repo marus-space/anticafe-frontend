@@ -1,46 +1,51 @@
-import React from 'react';
-import { Switch, Route } from 'react-router-dom';
-import { Layout } from 'antd';
+import React, { useState } from 'react';
 
-import Header from '../../layouts/Header';
+import { ReservationDataType as DataType } from '../../types/DataType';
 import ReservationActionBar from './ReservationActionBar';
 import ReservationTable from './ReservationTable';
 import ReservationForm from './ReservationForm';
+import Section from '../../layouts/Section';
 import classes from './ReservationSection.module.scss';
 
-class ReservationSection extends React.Component {
-    state = {
-        selectedRowKeys: [],
+const ReservationSection: React.FC = () => {
+    const [reservation, setReservation] = useState<DataType[]>([]);
+
+    const onSelectItem = (record: DataType) => {
+        setReservation([record]);
     };
-    
-    onSelect = (selectedRowKeys: React.Key[]) => {
-        this.setState({ selectedRowKeys });
-        console.log(this.state.selectedRowKeys);
-    };
-    
-    render () {
-        const { Content } = Layout;
-        return (
-            <div className={classes.component} onClick={() => this.onSelect([])}>
-                <Switch>
-                    <Route exact path="/reservations">
-                        <Header title="Брони и аренды" />
-                        <Content className={classes.content}>
-                            <ReservationActionBar selectedRowKeys={this.state.selectedRowKeys} />
-                            <ReservationTable selectedRowKeys={this.state.selectedRowKeys} onSelect={this.onSelect} />
-                        </Content>
-                    </Route>
-                    <Route exact path="/reservations/new_reservation">
-                        <Header title="Новая бронь" />
-                        <Content className={classes.content}>
-                            <ReservationForm />
-                        </Content>
-                    </Route>
-                </Switch>
-                
-            </div>
-        );
-    }
-}
+
+    const routs = [
+        {
+            path: '/reservations',
+            title: 'Брони и аренды',
+            component: 
+                <>
+                    <ReservationActionBar selectedItem={reservation[0] ? true : false} />
+                    <ReservationTable onSelectItem={onSelectItem} />
+                </>,
+        },
+        {
+            path: '/reservations',
+            title: 'Новая бронь',
+            component: <ReservationForm />,
+        },
+        {
+            path: '/reservations',
+            title: 'Изменить бронь',
+            component: <div>Изменить бронь</div>,
+        },
+        {
+            path: '/reservations',
+            title: 'Удалить бронь',
+            component: <div>Удалить бронь</div>,
+        },
+    ];
+
+    return(
+        <div className={classes.component}>
+            <Section routs={routs} />
+        </div>
+    );
+};
 
 export default ReservationSection;

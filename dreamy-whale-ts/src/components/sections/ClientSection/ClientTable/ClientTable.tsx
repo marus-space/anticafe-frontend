@@ -8,11 +8,11 @@ import { ClientDataType as DataType } from '../../../types/DataType';
 import classes from './ClientTable.module.scss';
 
 type ClientTableProps = {
-    onClientSelect: (record: DataType) => void,
+    onSelectItem: (record: DataType) => void,
 };
 
 const ClientTable: React.FC<ClientTableProps> = (props) => {
-    const {onClientSelect} = props;
+    const {onSelectItem} = props;
     const [clients, setClients] = useState<DataType[]>([]);
 
     useEffect(() => {
@@ -107,7 +107,7 @@ const ClientTable: React.FC<ClientTableProps> = (props) => {
                 rowSelection={{
                     type: 'radio',
                     onSelect: (record) => {                        
-                        onClientSelect(record);
+                        onSelectItem(record);
                         console.log(record);
                     },
                 }}

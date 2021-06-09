@@ -1,31 +1,23 @@
 import React from 'react';
-import { Layout } from 'antd';
 
-import Header from '../../layouts/Header';
 import CalculatorForm from './CalculatorForm';
+import Section from '../../layouts/Section';
 import classes from './CalculatorSection.module.scss';
 
-class CalculatorSection extends React.Component {
-    state = {
-        selectedRowKeys: [],
-    };
-    
-    onSelect = (selectedRowKeys: React.Key[]) => {
-        this.setState({ selectedRowKeys });
-        console.log(this.state.selectedRowKeys);
-    };
-    
-    render () {
-        const { Content } = Layout;
-        return (
-            <div className={classes.component} onClick={() => this.onSelect([])}>
-                <Header title="Калькулятор стоимости посещений" />
-                <Content className={classes.content}>
-                    <CalculatorForm />
-                </Content>
-            </div>
-        );
-    }
-}
+const CalculatorSection: React.FC = () => {
+    const routs = [
+        {
+            path: '/calculator',
+            title: 'Калькулятор стоимости посещений',
+            component: <CalculatorForm />,
+        },
+    ];
+
+    return (
+        <div className={classes.component}>
+            <Section routs={routs} />
+        </div>
+    );
+};
 
 export default CalculatorSection;

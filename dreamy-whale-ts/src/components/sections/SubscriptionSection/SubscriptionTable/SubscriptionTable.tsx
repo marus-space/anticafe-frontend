@@ -3,23 +3,15 @@ import { Table } from 'antd';
 import moment from 'moment';
 import axios from 'axios';
 
+import { SubscriptionDataType as DataType } from '../../../types/DataType';
 import classes from './SubscriptionTable.module.scss';
 
 type SubscriptionTableProps = {
-    selectedRowKeys: React.Key[],
-    onSelect: (selectedRowKeys: React.Key[]) => void,
+    onSelectItem: (record: DataType) => void,
 };
 
-interface DataType {
-    key: React.Key;
-    client: string,
-    subscription: string,
-    start: Date,
-    end: Date,
-  }
-
 const SubscriptionTable: React.FC<SubscriptionTableProps> = (props) => {
-    const { selectedRowKeys, onSelect } = props;
+    const { onSelectItem } = props;
     const [subscriptions, setSubscriptions] = useState<DataType[]>([]);
 
     useEffect(() => {
@@ -69,8 +61,10 @@ const SubscriptionTable: React.FC<SubscriptionTableProps> = (props) => {
                 rowKey="client_subscription_id"
                 rowSelection={{
                     type: 'radio',
-                    onChange: ((selectedRowKeys: React.Key[], selectedRows: DataType[]) => onSelect(selectedRowKeys)),
-                    selectedRowKeys,
+                    onSelect: (record) => {                        
+                        onSelectItem(record);
+                        console.log(record);
+                    },
                 }}
                 size="small"
             />

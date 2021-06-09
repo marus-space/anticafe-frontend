@@ -1,24 +1,38 @@
 import React from 'react';
-import { Button, Space } from 'antd';
-
+import ActionBar from '../../../layouts/Section/ActionBar';
 import classes from './ReservationTariffActionBar.module.scss';
 
 type ReservationTariffActionBarProps = {
-    selectedRowKeys: React.Key[],
+    selectedItem: boolean,
 };
 
 const ReservationTariffActionBar: React.FC<ReservationTariffActionBarProps> = (props) => {
-    const { selectedRowKeys } = props;
-    const disabled = selectedRowKeys.length === 0 ? true : false;
-    
+    const { selectedItem } = props;
+
+    const actions = [
+        {
+            label: 'Новый тариф',
+            alwaysEnabled: true,
+            linkPath: '/tariff/reservation',
+        },
+        {
+            label: 'Изменить тариф',
+            alwaysEnabled: false,
+            linkPath: '/tariff/reservation',
+        },
+        {
+            label: 'Удалить пополнение',
+            alwaysEnabled: false,
+            linkPath: '/tariff/reservation',
+        },
+    ];
+
     return (
-        <div className={classes.component}>
-        <Space>
-            <Button>Новый тариф</Button>
-            <Button disabled={disabled} type="primary">Изменить тариф</Button>
-            <Button disabled={disabled} type="primary">Удалить тариф</Button>
-        </Space>
-    </div>
+        <ActionBar
+            selectedItem={selectedItem}
+            searchPlaceholder="Объект брони"
+            actions={actions}
+        />
     );
 };
 

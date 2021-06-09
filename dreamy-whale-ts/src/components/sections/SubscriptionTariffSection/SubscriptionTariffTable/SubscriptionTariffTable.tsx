@@ -1,24 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Table } from 'antd';
 import axios from 'axios';
-
+import { SubscriptionTariffDataType as DataType } from '../../../types/DataType';
 import classes from './SubscriptionTariffTable.module.scss';
 
 type SubscriptionTariffTableProps = {
-    selectedRowKeys: React.Key[],
-    onSelect: (selectedRowKeys: React.Key[]) => void,};
-
-interface DataType {
-    key: React.Key;
-    name: string,
-    start: string,
-    end: string,
-    duration: number,
-    cost_rub: number,
-  }
+    onSelectItem: (record: DataType) => void,
+};
 
 const SubscriptionTariffTable: React.FC<SubscriptionTariffTableProps> = (props) => {
-    const { selectedRowKeys, onSelect } = props;
+    const { onSelectItem } = props;
     const [subscriptionTariff, setSubscriptionTariff] = useState<DataType[]>([]);
 
     useEffect(() => {
@@ -75,8 +66,10 @@ const SubscriptionTariffTable: React.FC<SubscriptionTariffTableProps> = (props) 
                 rowKey="subscription_id"
                 rowSelection={{
                     type: 'radio',
-                    onChange: ((selectedRowKeys: React.Key[], selectedRows: DataType[]) => onSelect(selectedRowKeys)),
-                    selectedRowKeys,
+                    onSelect: (record) => {                        
+                        onSelectItem(record);
+                        console.log(record);
+                    },
                 }}
                 size="small"
             />

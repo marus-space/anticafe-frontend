@@ -1,33 +1,50 @@
-import React from 'react';
-import { Layout } from 'antd';
+import React, { useState } from 'react';
 
-import Header from '../../layouts/Header';
+import { ReservationTariffDataType as DataType } from '../../types/DataType';
 import ReservationTariffActionBar from './ReservationTariffActionBar';
 import ReservationTariffTable from './ReservationTariffTable';
+import Section from '../../layouts/Section';
 import classes from './ReservationTariffSection.module.scss';
 
-class ReservationTariffSection extends React.Component {
-    state = {
-        selectedRowKeys: [],
+const ReservationTariffSection: React.FC = () => {
+    const [reservationTariff, setReservationTariff] = useState<DataType[]>([]);
+
+    const onSelectItem = (record: DataType) => {
+        setReservationTariff([record]);
     };
-    
-    onSelect = (selectedRowKeys: React.Key[]) => {
-        this.setState({ selectedRowKeys });
-        console.log(this.state.selectedRowKeys);
-    };
-    
-    render () {
-        const { Content } = Layout;
-        return (
-            <div className={classes.component} onClick={() => this.onSelect([])}>
-                <Header title="Тарифы на бронь и аренду"/>
-                <Content className={classes.content}>
-                    <ReservationTariffActionBar selectedRowKeys={this.state.selectedRowKeys} />
-                    <ReservationTariffTable selectedRowKeys={this.state.selectedRowKeys} onSelect={this.onSelect} />
-                </Content>
-            </div>
-        );
-    }
-}
+
+    const routs = [
+        {
+            path: '/tariff/reservation',
+            title: 'Тарифы на бронь и аренду',
+            component: 
+                <>
+                    <ReservationTariffActionBar selectedItem={reservationTariff[0] ? true : false} />
+                    <ReservationTariffTable onSelectItem={onSelectItem} />
+                </>,
+        },
+        {
+            path: '/tariff/reservation',
+            title: 'Новый тариф',
+            component: <div>Изменить тариф</div>,
+        },
+        {
+            path: '/tariff/reservation',
+            title: 'Изменить тариф',
+            component: <div>Изменить тариф</div>,
+        },
+        {
+            path: '/tariff/reservation',
+            title: 'Удалить тариф',
+            component: <div>Удалить тариф</div>,
+        },
+    ];
+
+    return(
+        <div className={classes.component}>
+            <Section routs={routs} />
+        </div>
+    );
+};
 
 export default ReservationTariffSection;

@@ -4,31 +4,15 @@ import moment from 'moment';
 import axios from 'axios';
 import clsx from 'clsx';
 
+import { FormDataType as DataType } from '../../../types/DataType';
 import classes from './FormTable.module.scss';
 
 type FormTableProps = {
-    selectedRowKeys: React.Key[],
-    onSelect: (selectedRowKeys: React.Key[]) => void,
+    onSelectItem: (record: DataType) => void,
 };
 
-interface DataType {
-    key: React.Key;
-    last_name: string,
-    first_name: string,
-    patronymic: string,
-    phone: number,
-    email: string,
-    ref_link_from: string,
-    ref_link: string,
-    source: string,
-    guest_card_id: number,
-    card_id: number,
-    card_type: string,
-    processed: boolean,
-  }
-
 const FormTable: React.FC<FormTableProps> = (props) => {
-    const { selectedRowKeys, onSelect } = props;
+    const { onSelectItem } = props;
     const [form, setForm] = useState<DataType[]>([]);
 
     useEffect(() => {
@@ -136,8 +120,10 @@ const FormTable: React.FC<FormTableProps> = (props) => {
                 rowKey="questionnaire_id"
                 rowSelection={{
                     type: 'radio',
-                    onChange: ((selectedRowKeys: React.Key[], selectedRows: DataType[]) => onSelect(selectedRowKeys)),
-                    selectedRowKeys,
+                    onSelect: (record) => {                        
+                        onSelectItem(record);
+                        console.log(record);
+                    },
                 }}
                 size="small"
             />

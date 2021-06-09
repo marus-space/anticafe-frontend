@@ -12,7 +12,7 @@ import classes from './ClientSection.module.scss';
 const ClientSection: React.FC = () => {
     const [client, setClient] = useState<DataType[]>([]);
 
-    const onClientSelect = (record: DataType) => {
+    const onSelectItem = (record: DataType) => {
         setClient([record]);
     };
 
@@ -23,7 +23,7 @@ const ClientSection: React.FC = () => {
             component: 
                 <>
                     <ClientActionBar selectedItem={client[0] ? true : false} />
-                    <ClientTable onClientSelect={onClientSelect} />
+                    <ClientTable onSelectItem={onSelectItem} />
                 </>,
         },
         {

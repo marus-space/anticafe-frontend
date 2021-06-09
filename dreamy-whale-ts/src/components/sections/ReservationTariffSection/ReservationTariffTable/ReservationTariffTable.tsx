@@ -2,24 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { Table } from 'antd';
 import axios from 'axios';
 
+import { ReservationTariffDataType as DataType } from '../../../types/DataType';
 import classes from './ReservationTariffTable.module.scss';
 
 type ReservationTariffTableProps = {
-    selectedRowKeys: React.Key[],
-    onSelect: (selectedRowKeys: React.Key[]) => void,
+    onSelectItem: (record: DataType) => void,
 };
 
-interface DataType {
-    key: React.Key;
-    reservation_object: string,
-    min_num_of_persons: number,
-    max_num_of_persons: number,
-    one_time_cost: number,
-    cost_per_hour: number,
-  }
-
 const ReservationTariffTable: React.FC<ReservationTariffTableProps> = (props) => {
-    const { selectedRowKeys, onSelect } = props;
+    const { onSelectItem } = props;
     const [reservationTariff, setReservationTariff] = useState<DataType[]>([]);
 
     useEffect(() => {
@@ -76,10 +67,11 @@ const ReservationTariffTable: React.FC<ReservationTariffTableProps> = (props) =>
                 rowKey="reservation_tariff_id"
                 rowSelection={{
                     type: 'radio',
-                    onChange: ((selectedRowKeys: React.Key[], selectedRows: DataType[]) => onSelect(selectedRowKeys)),
-                    selectedRowKeys,
+                    onSelect: (record) => {                        
+                        onSelectItem(record);
+                        console.log(record);
+                    },
                 }}
-                size="small"
                 pagination={{ pageSize: 20 }}
             />
         </div>

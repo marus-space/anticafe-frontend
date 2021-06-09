@@ -1,36 +1,38 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Button, Space, Input } from 'antd';
-
+import ActionBar from '../../../layouts/Section/ActionBar';
 import classes from './ReservationActionBar.module.scss';
 
 type ReservationActionBarProps = {
-    selectedRowKeys: React.Key[],
+    selectedItem: boolean,
 };
 
 const ReservationActionBar: React.FC<ReservationActionBarProps> = (props) => {
-    const { selectedRowKeys } = props;
-    const { Search } = Input;
-    const onSearch = (search: string) => console.log(search);
-
-    const disabled = selectedRowKeys.length === 0 ? true : false;
+    const { selectedItem } = props;
+    
+    const actions = [
+        {
+            label: 'Новая бронь',
+            alwaysEnabled: true,
+            linkPath: '/reservations',
+        },
+        {
+            label: 'Изменить бронь',
+            alwaysEnabled: false,
+            linkPath: '/reservations',
+        },
+        {
+            label: 'Удалить бронь',
+            alwaysEnabled: false,
+            linkPath: '/reservations',
+        },
+    ];
 
     return (
-        <div className={classes.component}>
-            <Space>
-                <Search
-                    placeholder="Имя или номер телефона"
-                    allowClear
-                    onSearch={onSearch}
-                    className={classes.search}
-                />
-                <Button>
-                    <Link to={{ pathname: '/reservations/new_reservation' }}>Новая бронь</Link>
-                </Button>
-                <Button disabled={disabled} type="primary">Изменить бронь</Button>
-                <Button disabled={disabled} type="primary">Удалить бронь</Button>
-            </Space>
-        </div>
+        <ActionBar
+            selectedItem={selectedItem}
+            searchPlaceholder="Имя или номер телефона"
+            actions={actions}
+        />
     );
 };
 

@@ -3,19 +3,10 @@ import { Table } from 'antd';
 import moment from 'moment';
 import axios from 'axios';
 
+import { CostDataType as DataType } from '../../../types/DataType';
 import classes from './CostTable.module.scss';
 
 type CostTableProps = {};
-
-interface DataType {
-    key: React.Key;
-    client: string,
-    cost_type: string,
-    date: Date,
-    cost_rub: number,
-    cost_min: number,
-    bonus: number,
-  }
 
 const CostTable: React.FC<CostTableProps> = (props) => {
     const [costs, setCosts] = useState<DataType[]>([]);

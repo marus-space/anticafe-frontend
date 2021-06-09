@@ -7,11 +7,11 @@ import { AccountingEntryDataType as DataType } from '../../../types/DataType';
 import classes from './AccountingEntryTable.module.scss';
 
 type AccountingEntryTableProps = {
-    onAccountingEntrySelect: (record: DataType) => void,
+    onSelectItem: (record: DataType) => void,
 };
 
 const AccountingEntryTable: React.FC<AccountingEntryTableProps> = (props) => {
-    const { onAccountingEntrySelect } = props;
+    const { onSelectItem } = props;
     const [accountingEntries, setAccountingEntrys] = useState<DataType[]>([]);
 
     useEffect(() => {
@@ -68,7 +68,7 @@ const AccountingEntryTable: React.FC<AccountingEntryTableProps> = (props) => {
                 rowSelection={{
                     type: 'radio',
                     onSelect: (record) => {
-                        onAccountingEntrySelect(record);
+                        onSelectItem(record);
                         console.log(record);
                     },
                 }}

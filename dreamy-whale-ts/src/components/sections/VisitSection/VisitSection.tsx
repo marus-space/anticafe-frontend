@@ -1,33 +1,52 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Layout } from 'antd';
 
+import { VisitDataType as DataType } from '../../types/DataType';
 import Header from '../../layouts/Header';
 import VisitActionBar from './VisitActionBar';
 import VisitTable from './VisitTable';
+import Section from '../../layouts/Section';
 import classes from './VisitSection.module.scss';
 
-class VisitSection extends React.Component {
-    state = {
-        selectedRowKeys: [],
+const VisitSection: React.FC = () => {
+    const [visit, setVisit] = useState<DataType[]>([]);
+
+    const onSelectItem = (record: DataType) => {
+        setVisit([record]);
     };
-    
-    onSelect = (selectedRowKeys: React.Key[]) => {
-        this.setState({ selectedRowKeys });
-        console.log(this.state.selectedRowKeys);
-    };
-    
-    render () {
-        const { Content } = Layout;
-        return (
-            <div className={classes.component} onClick={() => this.onSelect([])}>
-                <Header title="Посещения" />
-                <Content className={classes.content}>
-                    <VisitActionBar selectedRowKeys={this.state.selectedRowKeys} />
-                    <VisitTable selectedRowKeys={this.state.selectedRowKeys} onSelect={this.onSelect} />
-                </Content>
-            </div>
-        );
-    }
-}
+
+    const routs = [
+        {
+            path: '/visits',
+            title: 'Посещения',
+            component: 
+                <>
+                    <VisitActionBar selectedItem={visit[0] ? true : false} />
+                    <VisitTable onSelectItem={onSelectItem} />
+                </>,
+        },
+        {
+            path: '/visits',
+            title: 'Новое посещение',
+            component: <div></div>,
+        },
+        {
+            path: '/visits',
+            title: 'Изменить посещение',
+            component: <div></div>,
+        },
+        {
+            path: '/visits',
+            title: 'Удалить посещение',
+            component: <div></div>,
+        },
+    ];
+
+    return(
+        <div className={classes.component}>
+            <Section routs={routs} />
+        </div>
+    );
+};
 
 export default VisitSection;

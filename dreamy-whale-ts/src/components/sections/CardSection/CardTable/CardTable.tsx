@@ -3,23 +3,16 @@ import { Table } from 'antd';
 import moment from 'moment';
 import axios from 'axios';
 
+import { CardDataType as DataType } from '../../../types/DataType';
 import classes from './CardTable.module.scss';
+import { on } from 'cluster';
 
 type CardTableProps = {
-    selectedRowKeys: React.Key[],
-    onSelect: (selectedRowKeys: React.Key[]) => void,
+    onSelectItem: (record: DataType) => void,
 };
 
-interface DataType {
-    key: React.Key;
-    client: string,
-    card: number,
-    card_status: string,
-    date: Date,
-  }
-
 const CardTable: React.FC<CardTableProps> = (props) => {
-    const { selectedRowKeys, onSelect } = props;
+    const { onSelectItem } = props;
     const [cards, setCards] = useState<DataType[]>([]);
 
     useEffect(() => {
@@ -68,8 +61,10 @@ const CardTable: React.FC<CardTableProps> = (props) => {
                 rowKey="client_card_id"
                 rowSelection={{
                     type: 'radio',
-                    onChange: ((selectedRowKeys: React.Key[], selectedRows: DataType[]) => onSelect(selectedRowKeys)),
-                    selectedRowKeys,
+                    onSelect: (record) => {                        
+                        onSelectItem(record);
+                        console.log(record);
+                    },
                 }}
                 size="small"
             />

@@ -3,6 +3,7 @@ import { Table } from 'antd';
 import moment from 'moment';
 import axios from 'axios';
 
+import { VisitDataType as DataType } from '../../../types/DataType';
 import classes from './VisitTable.module.scss';
 
 const duration = (minutes: number) => {
@@ -18,21 +19,11 @@ const duration = (minutes: number) => {
 };
 
 type VisitTableProps = {
-    selectedRowKeys: React.Key[],
-    onSelect: (selectedRowKeys: React.Key[]) => void,
+    onSelectItem: (record: DataType) => void,
 };
 
-interface DataType {
-    key: React.Key;
-    client: string,
-    start: Date,
-    end: Date,
-    duration: number,
-    comment: string,
-  }
-
 const VisitTable: React.FC<VisitTableProps> = (props) => {
-    const { selectedRowKeys, onSelect } = props;
+    const { onSelectItem } = props;
     const [visits, setVisits] = useState<DataType[]>([]);
 
     useEffect(() => {
@@ -88,8 +79,10 @@ const VisitTable: React.FC<VisitTableProps> = (props) => {
                 rowKey="visit_id"
                 rowSelection={{
                     type: 'radio',
-                    onChange: ((selectedRowKeys: React.Key[], selectedRows: DataType[]) => onSelect(selectedRowKeys)),
-                    selectedRowKeys,
+                    onSelect: (record) => {                        
+                        onSelectItem(record);
+                        console.log(record);
+                    },
                 }}
                 size="small"
             />

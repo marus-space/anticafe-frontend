@@ -1,23 +1,39 @@
 import React from 'react';
-import { Button, Space } from 'antd';
-
+import ActionBar from '../../../layouts/Section/ActionBar';
 import classes from './SubscriptionTariffActionBar.module.scss';
 
 type SubscriptionTariffActionBarProps = {
-    selectedRowKeys: React.Key[],
+    selectedItem: boolean,
 };
 
 const SubscriptionTariffActionBar: React.FC<SubscriptionTariffActionBarProps> = (props) => {
-    const { selectedRowKeys } = props;
-    const disabled = selectedRowKeys.length === 0 ? true : false;
+    const { selectedItem } = props;
+    
+    const actions = [
+        {
+            label: 'Новый абонемент',
+            alwaysEnabled: true,
+            linkPath: '/tariff/subscription',
+        },
+        {
+            label: 'Изменить абонемент',
+            alwaysEnabled: false,
+            linkPath: '/tariff/subscription',
+        },
+        {
+            label: 'Удалить абонемент',
+            alwaysEnabled: false,
+            linkPath: '/tariff/subscription',
+        },
+    ];
 
-    return (<div className={classes.component}>
-        <Space>
-            <Button>Новый абонемент</Button>
-            <Button disabled={disabled} type="primary">Изменить абонемент</Button>
-            <Button disabled={disabled} type="primary">Удалить абонемент</Button>
-        </Space>
-    </div>);
+    return (
+        <ActionBar
+            selectedItem={selectedItem}
+            searchPlaceholder="Абонемент"
+            actions={actions}
+        />
+    );
 };
 
 export default SubscriptionTariffActionBar;

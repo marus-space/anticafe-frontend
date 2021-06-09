@@ -1,32 +1,33 @@
 import React from 'react';
-import { Button, Space, Input } from 'antd';
-
+import ActionBar from '../../../layouts/Section/ActionBar';
 import classes from './CardActionBar.module.scss';
 
 type CardActionBarProps = {
-    selectedRowKeys: React.Key[],
+    selectedItem: boolean,
 };
 
 const CardActionBar: React.FC<CardActionBarProps> = (props) => {
-    const { selectedRowKeys } = props;
-    const { Search } = Input;
-    const onSearch = (search: string) => console.log(search);
-
-    const disabled = selectedRowKeys.length === 0 ? true : false;
+    const { selectedItem } = props;
+    
+    const actions = [
+        {
+            label: 'Новая карта',
+            alwaysEnabled: true,
+            linkPath: '/cards',
+        },
+        {
+            label: 'Изменить статус карты',
+            alwaysEnabled: false,
+            linkPath: '/cards',
+        },
+    ];
 
     return (
-        <div className={classes.component}>
-            <Space>
-                <Search
-                    placeholder="Имя или номер карты"
-                    allowClear
-                    onSearch={onSearch}
-                    className={classes.search}
-                />
-                <Button>Новая карта</Button>
-                <Button disabled={disabled} type="primary">Изменить статус карты</Button>
-            </Space>
-        </div>
+        <ActionBar
+            selectedItem={selectedItem}
+            searchPlaceholder="Имя клиента"
+            actions={actions}
+        />
     );
 };
 

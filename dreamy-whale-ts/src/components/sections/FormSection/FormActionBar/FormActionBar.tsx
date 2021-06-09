@@ -1,34 +1,28 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Button, Space, Input } from 'antd';
-
+import ActionBar from '../../../layouts/Section/ActionBar';
 import classes from './FormActionBar.module.scss';
 
 type FormActionBarProps = {
-    selectedRowKeys: React.Key[],
+    selectedItem: boolean,
 };
 
 const FormActionBar: React.FC<FormActionBarProps> = (props) => {
-    const { selectedRowKeys } = props;
-    const { Search } = Input;
-    const onSearch = (search: string) => console.log(search);
+    const {selectedItem} = props;
 
-    const disabled = selectedRowKeys.length === 0 ? true : false;
+    const actions = [
+        {
+            label: 'Обработать анкету',
+            alwaysEnabled: false,
+            linkPath: '/forms/process',
+        },
+    ];
 
     return (
-        <div className={classes.component}>
-            <Space>
-                <Search
-                    placeholder="Имя или номер телефона"
-                    allowClear
-                    onSearch={onSearch}
-                    className={classes.search}
-                />
-                <Button disabled={disabled} type="primary">
-                    <Link to={{ pathname: '/forms/process' }}>Обработать анкету</Link>
-                </Button>
-            </Space>
-        </div>
+        <ActionBar
+            selectedItem={selectedItem}
+            searchPlaceholder="Имя или номер телефона"
+            actions={actions}
+        />
     );
 };
 
