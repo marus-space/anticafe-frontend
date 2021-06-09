@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Button, DatePicker, message } from 'antd';
+import { Form, Input, Button, DatePicker } from 'antd';
 import locale from 'antd/es/date-picker/locale/ru_RU';
 import 'moment/locale/ru';
 import { Moment } from 'moment';

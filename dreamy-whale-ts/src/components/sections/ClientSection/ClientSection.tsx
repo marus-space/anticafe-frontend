@@ -33,7 +33,7 @@ const ClientSection: React.FC = () => {
         {
             path: '/clients/new_accounting_entry',
             title: 'Новое пополнение',
-            component: <AccountingEntryForm />,
+            component: <AccountingEntryForm client={client[0]} />,
         },
     ];
 
