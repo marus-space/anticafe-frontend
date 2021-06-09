@@ -6,6 +6,7 @@ import { Moment } from 'moment';
 import axios from 'axios';
 
 import { ClientDataType as DataType } from '../../../types/DataType';
+import showErrorMessage from '../../../layouts/ErrorMessage';
 import classes from './VisitForm.module.scss';
 
 type VisitFormProps = {
@@ -15,13 +16,6 @@ type VisitFormProps = {
 const VisitForm: React.FC<VisitFormProps> = (props) => {
     const {client} = props;
 
-    const showErrorMessage = (errorMessage: string) => (
-        message.error({
-            content: errorMessage,
-            style: { width: 'fit-content', margin: '80px 30px 0 80%' },
-        })
-    );
-    
     const onFinish = (values: {start: Moment, end: Moment, comment: string}) => {
         const formObject = {
             client: client.client_id,
