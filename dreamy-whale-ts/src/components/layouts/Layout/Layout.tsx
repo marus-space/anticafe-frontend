@@ -4,7 +4,6 @@ import { Layout } from 'antd';
 import clsx from 'clsx';
 
 import Sidebar from '../Sidebar';
-import Header from '../Header';
 import ClientSection from '../../sections/ClientSection';
 import CardSection from '../../sections/CardSection';
 import VisitSection from '../../sections/VisitSection';
@@ -19,8 +18,6 @@ import VisitTariffSecton from '../../sections/VisitTariffSection';
 import SubscriptionTariffSecton from '../../sections/SubscriptionTariffSection';
 import ReservationTariffSecton from '../../sections/ReservationTariffSection';
 import classes from './Layout.module.scss';
-
-const { Content } = Layout;
 
 class PageLayout extends React.Component {
   state = {

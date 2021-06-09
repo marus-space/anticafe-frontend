@@ -4,39 +4,24 @@ import moment from 'moment';
 import axios from 'axios';
 import clsx from 'clsx';
 
+import { ClientDataType as DataType } from '../../../types/DataType';
 import classes from './ClientTable.module.scss';
 
 type ClientTableProps = {
-    selectedRowKeys: React.Key[],
-    onSelect: (selectedRowKeys: React.Key[]) => void,
+    onClientSelect: (record: DataType) => void, // Общее для всех таблиц
 };
 
-interface DataType {
-    key: React.Key;
-    last_name: string,
-    first_name: string,
-    patronymic: string,
-    phone: number,
-    email: string,
-    date_of_birth: Date,
-    balance_rub: number,
-    balance_min: number,
-    payment_min_status: boolean,
-    ban_status: boolean,
-    ref_link: string,
-  }
-
 const ClientTable: React.FC<ClientTableProps> = (props) => {
-    const { selectedRowKeys, onSelect } = props;
-    const [clients, setClients] = useState<DataType[]>([]);
+    const {onClientSelect} = props; // Общее
+    const [clients, setClients] = useState<DataType[]>([]); // Общее (главное импортировать правильный тип)
 
     useEffect(() => {
         axios
         .get("/clients/")
         .then(response => setClients(response.data));        
-    }, []);
+    }, []); // Общее (подставляется только адрес)
 
-    const dataSource = clients;
+    const dataSource = clients; // Почти общее
 
     const columns = [
         {
@@ -121,10 +106,13 @@ const ClientTable: React.FC<ClientTableProps> = (props) => {
                 rowKey="client_id"
                 rowSelection={{
                     type: 'radio',
-                    onChange: ((selectedRowKeys: React.Key[], selectedRows: DataType[]) => onSelect(selectedRowKeys)),
-                    selectedRowKeys,
+                    onSelect: (record) => {                        
+                        onClientSelect(record);
+                        console.log(record);
+                    },
                 }}
                 size="small"
+                pagination={{pageSize: 7}}
             />
         </div>
     );

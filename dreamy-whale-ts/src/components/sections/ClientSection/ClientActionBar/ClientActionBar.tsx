@@ -5,15 +5,15 @@ import { Button, Space, Input } from 'antd';
 import classes from './ClientActionBar.module.scss';
 
 type ClientActionBarProps = {
-    selectedRowKeys: React.Key[],
+    clientId: number,
 };
 
 const ClientActionBar: React.FC<ClientActionBarProps> = (props) => {
-    const { selectedRowKeys } = props;
+    const { clientId } = props;
     const { Search } = Input;
     const onSearch = (search: string) => console.log(search);
 
-    const disabled = selectedRowKeys.length === 0 ? true : false;
+    const disabled = clientId === 0 ? true : false;
 
     return (
         <div className={classes.component}>
