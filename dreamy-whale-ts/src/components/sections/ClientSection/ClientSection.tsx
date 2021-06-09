@@ -4,6 +4,7 @@ import { ClientDataType as DataType } from '../../types/DataType';
 import ClientActionBar from './ClientActionBar';
 import ClientTable from './ClientTable';
 import VisitForm from '../VisitSection/VisitForm';
+import SubscriptionForm from '../SubscriptionSection/SubscriptionForm';
 import AccountingEntryForm from '../AccountingEntrySection/AccountingEntryForm';
 import Section from '../../layouts/Section';
 import classes from './ClientSection.module.scss';
@@ -28,7 +29,12 @@ const ClientSection: React.FC = () => {
         {
             path: '/clients/new_visit',
             title: 'Новое посещение',
-            component: <VisitForm client={client[0]} />,
+            component: <VisitForm client={client[0]} method="POST" />,
+        },
+        {
+            path: '/clients/new_subscription',
+            title: 'Новый абонемент',
+            component: <SubscriptionForm client={client[0]} />,
         },
         {
             path: '/clients/new_accounting_entry',
@@ -37,7 +43,11 @@ const ClientSection: React.FC = () => {
         },
     ];
 
-    return(<Section routs={routs}/>);
+    return(
+        <div className={classes.component}>
+            <Section routs={routs} />
+        </div>
+    );
 };
     
 export default ClientSection;

@@ -18,7 +18,7 @@ const ClientActionBar: React.FC<ClientActionBarProps> = (props) => {
         {
             label: 'Новый абонемент',
             alwaysEnabled: false,
-            linkPath: '/clients',
+            linkPath: '/clients/new_subscription',
         },
         {
             label: 'Новое пополнение',

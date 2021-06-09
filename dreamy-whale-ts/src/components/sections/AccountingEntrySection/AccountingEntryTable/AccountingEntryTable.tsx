@@ -3,24 +3,15 @@ import { Table } from 'antd';
 import moment from 'moment';
 import axios from 'axios';
 
+import { AccountingEntryDataType as DataType } from '../../../types/DataType';
 import classes from './AccountingEntryTable.module.scss';
 
 type AccountingEntryTableProps = {
-    selectedRowKeys: React.Key[],
-    onSelect: (selectedRowKeys: React.Key[]) => void,
+    onAccountingEntrySelect: (record: DataType) => void,
 };
 
-interface DataType {
-    key: React.Key;
-    client: string,
-    accounting_entry_type: string,
-    date: Date,
-    cost_rub: number,
-    cost_min: number,
-  }
-
 const AccountingEntryTable: React.FC<AccountingEntryTableProps> = (props) => {
-    const { selectedRowKeys, onSelect } = props;
+    const { onAccountingEntrySelect } = props;
     const [accountingEntries, setAccountingEntrys] = useState<DataType[]>([]);
 
     useEffect(() => {
@@ -76,14 +67,10 @@ const AccountingEntryTable: React.FC<AccountingEntryTableProps> = (props) => {
                 rowKey="accounting_entry_id"
                 rowSelection={{
                     type: 'radio',
-                    onChange: ((selectedRowKeys: React.Key[], selectedRows: DataType[]) => onSelect(selectedRowKeys)),
-                    selectedRowKeys,
-                    getCheckboxProps: (record: DataType) => ({
-                        disabled: 
-                            record.accounting_entry_type === 'Списание' 
-                            || record.accounting_entry_type === 'Зачисление бонуса за посещение',
-                        accounting_entry_type: record.accounting_entry_type,
-                    }),
+                    onSelect: (record) => {
+                        onAccountingEntrySelect(record);
+                        console.log(record);
+                    },
                 }}
                 size="small"
             />

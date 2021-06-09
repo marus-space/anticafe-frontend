@@ -1,33 +1,39 @@
 import React from 'react';
 import { Button, Space, Input } from 'antd';
-
+import ActionBar from '../../../layouts/Section/ActionBar';
 import classes from './AccountingEntryActionBar.module.scss';
 
 type AccountingEntryActionBarProps = {
-    selectedRowKeys: React.Key[],
+    selectedItem: boolean,
 };
 
 const AccountingEntryActionBar: React.FC<AccountingEntryActionBarProps> = (props) => {
-    const { selectedRowKeys } = props;
-    const { Search } = Input;
-    const onSearch = (search: string) => console.log(search);
-
-    const disabled = selectedRowKeys.length === 0 ? true : false;
+    const { selectedItem } = props;
+    
+    const actions = [
+        {
+            label: 'Новое пополнение',
+            alwaysEnabled: true,
+            linkPath: '/accounting_entries',
+        },
+        {
+            label: 'Изменить пополнение',
+            alwaysEnabled: false,
+            linkPath: '/accounting_entries',
+        },
+        {
+            label: 'Удалить пополнение',
+            alwaysEnabled: false,
+            linkPath: '/accounting_entries',
+        },
+    ];
 
     return (
-        <div className={classes.component}>
-            <Space>
-                <Search
-                    placeholder="Имя клиента"
-                    allowClear
-                    onSearch={onSearch}
-                    className={classes.search}
-                />
-                <Button>Новое пополнение</Button>
-                <Button disabled={disabled} type="primary">Изменить пополнение</Button>
-                <Button disabled={disabled} type="primary">Удалить пополнение</Button>
-            </Space>
-        </div>
+        <ActionBar
+            selectedItem={selectedItem}
+            searchPlaceholder="Имя клиента"
+            actions={actions}
+        />
     );
 };
 

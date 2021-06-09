@@ -11,10 +11,12 @@ import classes from './VisitForm.module.scss';
 
 type VisitFormProps = {
     client: DataType,
+    visit?: number,
+    method: "POST" | "PUT",
 };
 
 const VisitForm: React.FC<VisitFormProps> = (props) => {
-    const {client} = props;
+    const {client, method} = props;
 
     const onFinish = (values: {start: Moment, end: Moment, comment: string}) => {
         const formObject = {
@@ -29,13 +31,21 @@ const VisitForm: React.FC<VisitFormProps> = (props) => {
             'Content-Type': 'application/json'
         };
 
-        axios
-        .post('/visits/', JSON.stringify(formObject), { headers: headers })
-        .then(response => window.location.href = "/visits/")
-        .catch(error => {
-            console.error(error.response.data.error);
-            showErrorMessage(error.response.data.error);
-        });
+        if (method === "POST") {
+            axios
+            .post('/visits/', JSON.stringify(formObject), { headers: headers })
+            .then(response => window.location.href = "/visits/")
+            .catch(error => {
+                console.error(error.response.data.error);
+                showErrorMessage(error.response.data.error);
+        })}
+        else if (method === "PUT") {
+            axios
+            .put('/visits/' + formObject.client, JSON.stringify(formObject), { headers: headers })
+            .catch(error => {
+                console.error(error.response.data.error);
+                showErrorMessage(error.response.data.error);
+        })};
     };
 
     return (

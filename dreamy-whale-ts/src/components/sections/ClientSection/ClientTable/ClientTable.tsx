@@ -112,7 +112,6 @@ const ClientTable: React.FC<ClientTableProps> = (props) => {
                     },
                 }}
                 size="small"
-                pagination={{pageSize: 7}}
             />
         </div>
     );

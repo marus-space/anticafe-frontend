@@ -1,3 +1,12 @@
+export type AccountingEntryDataType = {
+    key: React.Key;
+    client: string,
+    accounting_entry_type: string,
+    date: Date,
+    cost_rub: number,
+    cost_min: number,
+};
+
 export type ClientDataType = {
     key: React.Key;
     client_id: number;
