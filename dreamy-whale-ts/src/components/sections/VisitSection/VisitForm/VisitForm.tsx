@@ -1,12 +1,12 @@
 import React from 'react';
 import { Form, Input, Button, DatePicker, message } from 'antd';
+import locale from 'antd/es/date-picker/locale/ru_RU';
 import 'moment/locale/ru';
 import { Moment } from 'moment';
 import axios from 'axios';
 
-import classes from './VisitForm.module.scss';
-import locale from 'antd/es/date-picker/locale/ru_RU';
 import { ClientDataType as DataType } from '../../../types/DataType';
+import classes from './VisitForm.module.scss';
 
 type VisitFormProps = {
     client: DataType,

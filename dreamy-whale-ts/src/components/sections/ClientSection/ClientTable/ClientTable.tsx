@@ -8,20 +8,20 @@ import { ClientDataType as DataType } from '../../../types/DataType';
 import classes from './ClientTable.module.scss';
 
 type ClientTableProps = {
-    onClientSelect: (record: DataType) => void, // Общее для всех таблиц
+    onClientSelect: (record: DataType) => void,
 };
 
 const ClientTable: React.FC<ClientTableProps> = (props) => {
-    const {onClientSelect} = props; // Общее
-    const [clients, setClients] = useState<DataType[]>([]); // Общее (главное импортировать правильный тип)
+    const {onClientSelect} = props;
+    const [clients, setClients] = useState<DataType[]>([]);
 
     useEffect(() => {
         axios
         .get("/clients/")
         .then(response => setClients(response.data));        
-    }, []); // Общее (подставляется только адрес)
+    }, []);
 
-    const dataSource = clients; // Почти общее
+    const dataSource = clients;
 
     const columns = [
         {
