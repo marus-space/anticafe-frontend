@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Form, Input, Button, DatePicker, Checkbox } from 'antd';
 import locale from 'antd/es/date-picker/locale/ru_RU';
