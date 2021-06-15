@@ -21,9 +21,16 @@ const CostTable: React.FC<CostTableProps> = (props) => {
 
     const columns = [
         {
-            title: () => <span className={classes.alignCenter}>Клиент</span>,
-            dataIndex: 'client',
-            key: 'client',
+            title: () => <span className={classes.alignCenter}>Фамилия</span>,
+            dataIndex: 'last_name',
+            key: 'last_name',
+            width: 100,
+            render: (text: string) => <span className={classes.alignCenter}>{text}</span>
+        },
+        {
+            title: () => <span className={classes.alignCenter}>Имя</span>,
+            dataIndex: 'first_name',
+            key: 'first_name',
             width: 100,
             render: (text: string) => <span className={classes.alignCenter}>{text}</span>
         },
