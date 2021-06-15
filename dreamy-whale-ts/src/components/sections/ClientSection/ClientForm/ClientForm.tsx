@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 import { Form, Input, Button, DatePicker, Checkbox } from 'antd';
 import locale from 'antd/es/date-picker/locale/ru_RU';
 import 'moment/locale/ru';
@@ -11,13 +12,13 @@ import showErrorMessage from '../../../layouts/ErrorMessage';
 import classes from './ClientForm.module.scss';
 
 type ClientFormProps = {
-    client: DataType,
+    client?: DataType,
 };
 
 const ClientForm: React.FC<ClientFormProps> = (props) => {
     const {client} = props;
-    const [paymentStatus, setPaymentStatus] = useState(client.payment_min_status);
-    const [banStatus, setBanStatus] = useState(client.ban_status);
+    const [paymentStatus, setPaymentStatus] = useState(client?.payment_min_status);
+    const [banStatus, setBanStatus] = useState(client?.ban_status);
 
     const onPaymentStatusCheckboxChange = (e: { target: { checked: boolean } }) => {
         setPaymentStatus(e.target.checked);
@@ -37,15 +38,15 @@ const ClientForm: React.FC<ClientFormProps> = (props) => {
             ref_link_from: string
         }) => {
         const formObject = {
-            client_id: client.client_id,
+            client_id: client?.client_id,
             last_name: values.last_name,
             first_name: values.first_name,
             patronymic: values.patronymic,
             phone: values.phone,
             email: values.email,
             date_of_birth: values.date_of_birth.format('YYYY-MM-DD'),
-            payment_min_status: +paymentStatus,
-            ban_status: +banStatus,
+            payment_min_status: paymentStatus ? +paymentStatus : undefined,
+            ban_status: banStatus ? +banStatus : undefined,
             ref_link_from: values.ref_link_from
         }
         console.log(JSON.stringify(formObject));
@@ -55,7 +56,7 @@ const ClientForm: React.FC<ClientFormProps> = (props) => {
         };
 
         axios
-            .patch('/clients/' + String(client.client_id), JSON.stringify(formObject), { headers: headers })
+            .patch('/clients/' + String(client?.client_id), JSON.stringify(formObject), { headers: headers })
             .then(response => {
                 showSuccessMessage('Данные клиента были успешно изменены!');
                 setTimeout(() => window.location.href = "/clients/", 1000);
@@ -66,22 +67,26 @@ const ClientForm: React.FC<ClientFormProps> = (props) => {
         })
     };
 
+    if (!client) {
+        return (<Redirect to="/clients/" />);
+    };
+
     return (
         <div className={classes.component}>
             <Form
                 name="visit_form"
                 onFinish={onFinish}
                 initialValues={{ 
-                    last_name: client.last_name,
-                    first_name: client.first_name,
-                    patronymic: client.patronymic,
-                    phone: client.phone,
-                    email: client.email,
-                    date_of_birth: moment(client.date_of_birth),
-                    payment_min_status: client.payment_min_status,
-                    ban_status: client.ban_status,
-                    ref_link_from: client.ref_link_from,
-                    ref_link: client.ref_link,
+                    last_name: client?.last_name,
+                    first_name: client?.first_name,
+                    patronymic: client?.patronymic,
+                    phone: client?.phone,
+                    email: client?.email,
+                    date_of_birth: moment(client?.date_of_birth),
+                    payment_min_status: client?.payment_min_status,
+                    ban_status: client?.ban_status,
+                    ref_link_from: client?.ref_link_from,
+                    ref_link: client?.ref_link,
                  }}
             >
                 <Form.Item name="last_name">
