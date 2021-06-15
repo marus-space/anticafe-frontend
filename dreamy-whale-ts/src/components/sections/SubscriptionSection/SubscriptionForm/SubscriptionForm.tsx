@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import { Form, Input, Button, DatePicker, Select } from 'antd';
 import locale from 'antd/es/date-picker/locale/ru_RU';
 import 'moment/locale/ru';
@@ -41,6 +42,10 @@ const  SubscriptionForm: React.FC<SubscriptionFormProps> = (props) => {
             console.error(error.response.data.error);
             showErrorMessage(error.response.data.error);
         });
+    };
+
+    if (!client) {
+        return (<Redirect to={window.location.href.includes("/clients/new_subscription") ? "/clients": "/subscriptions"} />);
     };
 
     return (
