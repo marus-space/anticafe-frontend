@@ -13,17 +13,17 @@ const ReservationActionBar: React.FC<ReservationActionBarProps> = (props) => {
         {
             label: 'Новая бронь',
             alwaysEnabled: true,
-            linkPath: '/reservations',
+            linkPath: '/reservations/new',
         },
         {
             label: 'Изменить бронь',
             alwaysEnabled: false,
-            linkPath: '/reservations',
+            linkPath: '/reservations/edit',
         },
         {
             label: 'Удалить бронь',
             alwaysEnabled: false,
-            linkPath: '/reservations',
+            linkPath: '/reservations/delete',
         },
     ];
 

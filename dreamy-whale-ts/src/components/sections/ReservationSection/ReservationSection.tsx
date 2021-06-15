@@ -25,17 +25,17 @@ const ReservationSection: React.FC = () => {
                 </>,
         },
         {
-            path: '/reservations',
+            path: '/reservations/new',
             title: 'Новая бронь',
             component: <ReservationForm />,
         },
         {
-            path: '/reservations',
+            path: '/reservations/edit',
             title: 'Изменить бронь',
             component: <div>Изменить бронь</div>,
         },
         {
-            path: '/reservations',
+            path: '/reservations/delete',
             title: 'Удалить бронь',
             component: <div>Удалить бронь</div>,
         },
