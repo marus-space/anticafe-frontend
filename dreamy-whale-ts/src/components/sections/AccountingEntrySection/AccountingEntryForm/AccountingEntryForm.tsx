@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import { Form, Input, Button, Select, DatePicker, InputNumber } from 'antd';
 import locale from 'antd/es/date-picker/locale/ru_RU';
 import 'moment/locale/ru';
@@ -37,12 +38,16 @@ const AccountingEntryForm: React.FC<AccountingEntryFormProps> = (props) => {
         .post('/accounting_entries/', JSON.stringify(formObject), { headers: headers })
         .then(response => {
             showSuccessMessage('Проводка была успешно добавлена!');
-            setTimeout(() => window.location.href = "/accounting_entries/", 1000);          
+            setTimeout(() => window.location.href = "/accounting_entries/", 1000);
         })
         .catch(error => {
             console.error(error.response.data.error);
             showErrorMessage(error.response.data.error);
         });
+    };
+
+    if (!client) {
+        return (<Redirect to={window.location.href.includes("/clients/new_accounting_entry") ? "/clients": "/accounting_entries"} />);
     };
 
     return (
