@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import { Form, Input, Button, DatePicker } from 'antd';
 import locale from 'antd/es/date-picker/locale/ru_RU';
 import 'moment/locale/ru';
@@ -68,6 +69,10 @@ const VisitForm: React.FC<VisitFormProps> = (props) => {
         })};
     };
 
+    if (!client && !visit) {
+        return (<Redirect to={window.location.href.includes("/clients/new_visit") ? "/clients": "/visits"} />);
+    };
+
     return (
         <div className={classes.component}>
             <Form
@@ -75,7 +80,7 @@ const VisitForm: React.FC<VisitFormProps> = (props) => {
                 onFinish={onFinish}
                 initialValues={method === "POST" ? { client: client?.last_name + ' ' + client?.first_name }
                     : {
-                        client: visit?.client,
+                        client: visit?.last_name + ' ' + visit?.first_name,
                         start: moment(visit?.start),
                         end: moment(visit?.end),
                         comment: visit?.comment ? visit?.comment : '',
