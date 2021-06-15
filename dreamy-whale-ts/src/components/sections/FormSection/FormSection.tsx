@@ -27,7 +27,7 @@ const FormSection: React.FC = () => {
         {
             path: '/forms/process',
             title: 'Обработка анкеты',
-            component: <FormForm />,
+            component: <FormForm form={form[0]} />,
         },
     ];
 
