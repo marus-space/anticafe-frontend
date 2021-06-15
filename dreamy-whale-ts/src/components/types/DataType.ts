@@ -2,6 +2,8 @@ export type AccountingEntryDataType = {
     key: React.Key;
     accounting_entry_id: number,
     client: number,
+    last_name: string,
+    first_name: string,
     accounting_entry_type: string,
     date: Date,
     cost_rub: number,
@@ -12,6 +14,8 @@ export type CardDataType = {
     key: React.Key;
     client_card_id: number,
     client: number,
+    last_name: string,
+    first_name: string,
     card: number,
     card_status: string,
     date: Date,
@@ -38,6 +42,8 @@ export type CostDataType = {
     key: React.Key;
     cost_id: number,
     client: number,
+    last_name: string,
+    first_name: string,
     cost_type: string,
     date: Date,
     cost_rub: number,
@@ -47,6 +53,7 @@ export type CostDataType = {
 
 export type FormDataType = {
     key: React.Key;
+    questionnaire_id: number,
     last_name: string,
     first_name: string,
     patronymic: string,
@@ -90,6 +97,8 @@ export type ReservationTariffDataType = {
 export type SubscriptionDataType = {
     key: React.Key;
     client: number,
+    last_name: string,
+    first_name: string,
     subscription: string,
     start: Date,
     end: Date,
@@ -108,6 +117,8 @@ export type VisitDataType = {
     key: React.Key;
     visit_id: number,
     client: number,
+    last_name: string,
+    first_name: string,
     start: Date,
     end: Date,
     duration: number,
