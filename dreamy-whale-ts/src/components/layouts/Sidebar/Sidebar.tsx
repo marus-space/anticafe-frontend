@@ -37,10 +37,26 @@ const Sidebar: React.FC<SidebarProps> = (props) => {
           left: 0,
         }}>
             <Logo collapsed={collapsed}/>
-            <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+            <Menu
+            theme="dark"
+            defaultSelectedKeys={
+              window.location.href.includes("/clients") ? ['1']
+              : window.location.href.includes("/cards") ? ['2']
+              : window.location.href.includes("/visits") ? ['3']
+              : window.location.href.includes("/subscriptions") ? ['4']
+              : window.location.href.includes("/costs") ? ['5']
+              : window.location.href.includes("/accounting_entries") ? ['6']
+              : window.location.href.includes("/reservations") ? ['7']
+              : window.location.href.includes("/forms") ? ['8']
+              : window.location.href.includes("/scanner") ? ['9']
+              : window.location.href.includes("/calculator") ? ['10']
+              : window.location.href.includes("/tariff/visit") ? ['11']
+              : window.location.href.includes("/tariff/subscription") ? ['12'] : ['13']
+            }
+            mode="inline">
             <SubMenu key="sub1" icon={<UserOutlined />} title="Клиенты">
                 <Menu.Item key="1">
-                  <Link to={{ pathname: '/' }}>Клиенты</Link>
+                  <Link to={{ pathname: '/clients' }}>Клиенты</Link>
                 </Menu.Item>
                 <Menu.Item key="2">
                   <Link to={{ pathname: '/cards' }}>Карты</Link>
