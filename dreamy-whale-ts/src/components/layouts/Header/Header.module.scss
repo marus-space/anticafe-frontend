@@ -1,0 +1,15 @@
+@import "../../../styles/vars.scss";
+
+.component {
+  height: $header-height;
+  padding-left: $header-padding-left;
+  background: $header-background;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+    .title {
+      display: inline-block;
+      margin: 0;
+    }
+  }

@@ -1,0 +1,12 @@
+.component {
+    width: 40%;
+    margin: 20px auto 0px;
+
+    input[class="ant-input ant-input-disabled"] {
+        color: #000;
+    }
+
+    .datePicker {
+        width: 100%;
+    }
+}

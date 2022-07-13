@@ -1,0 +1,40 @@
+@import "../../../styles/vars.scss";
+
+.component {
+    display: flex;
+    padding: 15px;
+  
+    img {
+      width: 32px;
+      height: 32px;
+      margin: 0;
+      transition: margin 0.3s ease-in-out;
+    }
+
+    span {
+      color: #fff;
+      font-size: 18px;
+      display: block;
+      margin: auto 0 auto 10px;
+      height: 32px;
+      overflow: hidden;
+      opacity: 1;
+      transition: opacity 0.3s ease-in-out;
+    }
+}
+
+.collapsed {
+  flex-direction: column;
+
+  img {
+    margin: 0 9px; // (80px - 32px - 15px * 2) / 2
+    transition: margin 0.3s ease-in-out;
+  }
+
+  span {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    transition: opacity 0.3s ease-in-out;
+  }
+}
